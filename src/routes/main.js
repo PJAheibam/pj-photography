@@ -7,6 +7,7 @@ import Blog from "../pages/blog";
 import AuthPage from "../pages/authentication";
 import MyReviews from "../pages/my-reviews";
 import AddServices from "../pages/add-service";
+import PrivateRoute from "./private-route";
 
 export const router = createBrowserRouter([
   {
@@ -31,11 +32,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "my-reviews",
-        element: <MyReviews />,
+        element: (
+          <PrivateRoute>
+            <MyReviews />
+          </PrivateRoute>
+        ),
       },
       {
         path: "add-services",
-        element: <AddServices />,
+        element: (
+          <PrivateRoute>
+            <AddServices />
+          </PrivateRoute>
+        ),
       },
       {
         path: ":type",
