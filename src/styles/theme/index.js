@@ -41,5 +41,36 @@ export const darkTheme = {
         text: "hsl(187,20%,6%)",
       },
     },
+    outline: {
+      main: "hsl(145,05%,35%)",
+      variant: "hsl(145,05%,25%)",
+    },
+  },
+  fontSize: {
+    display: {
+      lg: "57px",
+      md: "45px",
+      sm: "36px",
+    },
+    headline: {
+      lg: "32px",
+      md: "28px",
+      sm: "24px",
+    },
+    title: {
+      lg: "22px",
+      md: "16px",
+      sm: "14px",
+    },
+    label: {
+      lg: "14px",
+      md: "12px",
+      sm: "11px",
+    },
+    body: {
+      lg: "16px",
+      md: "14px",
+      sm: "12px",
+    },
   },
 };
