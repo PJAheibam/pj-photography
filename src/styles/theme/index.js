@@ -4,11 +4,11 @@ export const darkTheme = {
       default: "hsl(270,10%,15%)",
       paper: {
         0: "transparent",
-        1: "hsl(145,15%,15%)",
-        2: "hsl(145,18%,15%)",
-        3: "hsl(145,11%,15%)",
-        4: "hsl(145,12%,15%)",
-        5: "hsl(145,14%,15%)",
+        1: "hsl(270,10%,15%)",
+        2: "hsl(145,05%,15%)",
+        3: "hsl(145,08%,16%)",
+        4: "hsl(145,11%,17%)",
+        5: "hsl(145,12%,18%)",
       },
     },
     primary: {
@@ -29,6 +29,16 @@ export const darkTheme = {
       container: {
         bg: "hsl(145,25%,65%)",
         text: "hsl(145,60%,5%)",
+      },
+    },
+    tertiary: {
+      main: {
+        bg: "hsl(187,78%,42%)",
+        text: "hsl(187,78%,6%)",
+      },
+      container: {
+        bg: "hsl(187,20%,45%)",
+        text: "hsl(187,20%,6%)",
       },
     },
   },
