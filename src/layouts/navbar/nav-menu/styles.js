@@ -1,11 +1,21 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
-export const Items = styled.nav`
+const verticalStyles = css`
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+`;
+
+const horizontalStyles = css`
   margin-left: auto;
-  display: flex;
   gap: 1rem;
   align-items: center;
+`;
+
+export const Items = styled.nav`
+  display: flex;
+  ${(p) => (p.direction === "horizontal" ? horizontalStyles : verticalStyles)};
 `;
 
 export const Item = styled(Link)`
