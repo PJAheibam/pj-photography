@@ -1,7 +1,13 @@
 import React from "react";
+import NavMenu from "./nav-menu";
+import { AppBar } from "./styles";
 
 function Navbar() {
-  return <div>Navbar</div>;
+  return (
+    <AppBar>
+      <NavMenu />
+    </AppBar>
+  );
 }
 
 export default Navbar;
