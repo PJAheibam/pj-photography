@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { swiperStyle } from "./swiper.styles";
 
 export const GlobaStyles = createGlobalStyle`
     *,
@@ -28,5 +29,7 @@ export const GlobaStyles = createGlobalStyle`
         text-transform: capitalize;
         border-radius: 0;
     }
+
+    ${swiperStyle}
 
 `;

@@ -1,7 +1,13 @@
 import React from "react";
+import { Main } from "../../components/containers/";
+import HeroSection from "./hero";
 
 function Home() {
-  return <div>Home</div>;
+  return (
+    <Main>
+      <HeroSection />
+    </Main>
+  );
 }
 
 export default Home;

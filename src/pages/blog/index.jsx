@@ -1,7 +1,8 @@
 import React from "react";
+import { Main, Section } from "../../components/containers";
 
 function Blog() {
-  return <div>Blog</div>;
+  return <Main></Main>;
 }
 
 export default Blog;

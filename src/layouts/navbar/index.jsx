@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Logo from "../../components/logo";
 import NavMenu from "./nav-menu";
 import { AppBar, Buttons, ToggleButton, ToolBar } from "./styles";
-import SecondaryBtn from "../../components/buttons/secondery-button";
+import SecondaryBtn from "../../components/buttons/secondary-button";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import { HiOutlineMenuAlt1 as MenuIcon } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
