@@ -4,8 +4,10 @@ import maxWidth from "../../styles/max-width";
 export const AppBar = styled.header`
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: 1rem;
   padding: 1rem;
+  /* flex-wrap: wrap; */
   ${maxWidth}
   box-shadow: 0 5px 5px rgba(0,0,0,0.25);
 `;
@@ -22,4 +24,10 @@ export const ToggleButton = styled.button`
   justify-content: center;
   font-size: 2rem;
   color: ${(p) => p.theme.palette.text.primary};
+`;
+
+export const ToolBar = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 `;

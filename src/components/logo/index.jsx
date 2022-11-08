@@ -11,15 +11,15 @@ const Container = styled(Link)`
 
 const Text = styled.span`
   font-weight: bold;
-  font-size: 1.5rem;
+  font-size: clamp(0.75rem, 5vw, 1.5rem);
   text-transform: uppercase;
   letter-spacing: 1px;
   color: white;
 `;
 
-function Logo() {
+function Logo({ style }) {
   return (
-    <Container>
+    <Container style={style}>
       <img height={40} src={logo} atl="PJ Photography" />
       <Text>PJ Photography</Text>
     </Container>

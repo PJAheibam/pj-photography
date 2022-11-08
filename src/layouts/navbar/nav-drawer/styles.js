@@ -12,6 +12,10 @@ export const Container = styled.aside`
   height: calc(100vh - 72px);
   padding: 1.5rem 2rem;
   padding-right: max(2rem, calc((100vw - 1280px) / 2));
+  background-color: ${(p) => p.theme.palette.background.paper[2]};
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  z-index: 500;
 `;
 
 export const Heading = styled.h1`

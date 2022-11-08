@@ -8,7 +8,6 @@ const verticalStyles = css`
 `;
 
 const horizontalStyles = css`
-  margin-left: auto;
   gap: 1rem;
   align-items: center;
 `;
