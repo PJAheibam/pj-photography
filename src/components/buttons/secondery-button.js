@@ -8,8 +8,8 @@ const Container = styled.button`
   background-color: ${(p) => p.theme.palette.primary.main.bg};
 `;
 
-function PrimaryBtn({ children, ...rest }) {
+function SecondaryBtn({ children, ...rest }) {
   return <Container {...rest}>{children}</Container>;
 }
 
-export default PrimaryBtn;
+export default SecondaryBtn;
