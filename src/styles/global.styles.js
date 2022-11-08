@@ -20,6 +20,9 @@ export const GlobaStyles = createGlobalStyle`
         text-decoration: none;
     }
     button{
+        font-weight: 500;
+        cursor: pointer;
+        font-size: 1rem;
         background-color: transparent;
         border: none;
         text-transform: capitalize;
