@@ -5,10 +5,10 @@ export const darkTheme = {
       paper: {
         0: "transparent",
         1: "hsl(270,10%,15%)",
-        2: "hsl(145,05%,15%)",
-        3: "hsl(145,08%,16%)",
-        4: "hsl(145,11%,17%)",
-        5: "hsl(145,12%,18%)",
+        2: "hsl(270,10%,20%)",
+        3: "hsl(270,10%,25%)",
+        4: "hsl(270,10%,27%)",
+        5: "hsl(270,10%,30%)",
       },
     },
     primary: {
@@ -23,12 +23,12 @@ export const darkTheme = {
     },
     secondary: {
       main: {
-        bg: "hsl(145,15%,55%)",
-        text: "hsl(145,60%,5%)",
+        bg: "hsl(145,13%,40%)",
+        text: "hsl(145,60%,93%)",
       },
       container: {
-        bg: "hsl(145,25%,65%)",
-        text: "hsl(145,60%,5%)",
+        bg: "hsl(145,13%,25%)",
+        text: "hsl(145,60%,90%)",
       },
     },
     tertiary: {

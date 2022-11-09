@@ -8,6 +8,7 @@ import { HiOutlineMenuAlt1 as MenuIcon } from "react-icons/hi";
 import { CgClose } from "react-icons/cg";
 import NavDrawer from "./nav-drawer";
 import { useComponentSize } from "react-use-size";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
@@ -23,8 +24,16 @@ function Navbar() {
         <ToolBar>
           {width >= 780 && <NavMenu />}
           <Buttons>
-            {width >= 500 && <SecondaryBtn>Login</SecondaryBtn>}
-            {width >= 605 && <PrimaryBtn>Register</PrimaryBtn>}
+            {width >= 500 && (
+              <SecondaryBtn as={Link} to="/login">
+                Login
+              </SecondaryBtn>
+            )}
+            {width >= 605 && (
+              <PrimaryBtn as={Link} to="/register">
+                Register
+              </PrimaryBtn>
+            )}
           </Buttons>
           {width < 780 && (
             <ToggleButton onClick={toggleMenu}>

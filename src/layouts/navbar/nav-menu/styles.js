@@ -13,11 +13,12 @@ const horizontalStyles = css`
 `;
 
 export const Items = styled.nav`
+  color: inherit;
   display: flex;
   ${(p) => (p.direction === "horizontal" ? horizontalStyles : verticalStyles)};
 `;
 
 export const Item = styled(Link)`
+  color: inherit;
   text-transform: capitalize;
-  color: ${(p) => p.theme.palette.text.secondary};
 `;

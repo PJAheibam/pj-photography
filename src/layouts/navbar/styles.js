@@ -2,14 +2,20 @@ import styled from "styled-components";
 import maxWidth from "../../styles/max-width";
 
 export const AppBar = styled.header`
+  position: fixed;
+  top: 0;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
   padding: 1rem;
+  color: ${(p) => p.theme.palette.secondary.container.text};
+  background-color: ${(p) => p.theme.palette.secondary.container.bg};
   /* flex-wrap: wrap; */
   ${maxWidth}
-  box-shadow: 0 5px 5px rgba(0,0,0,0.25);
+  z-index: 500;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
 `;
 
 export const Buttons = styled.div`
