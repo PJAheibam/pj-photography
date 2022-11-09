@@ -24,7 +24,7 @@ export const AnimationContainer = styled(animated.div)`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 1rem;
   background-color: ${(p) => p.theme.palette.background.paper[2]};
   /* position: absolute; */

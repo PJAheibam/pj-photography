@@ -23,7 +23,6 @@ function HeroSection() {
       //   dynamicBullets: true,
     },
   };
-  console.log(services);
   //    side  effects
   useEffect(() => {
     fetch("services.json")

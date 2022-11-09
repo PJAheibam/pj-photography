@@ -5,10 +5,12 @@ import google from "../../../assets/icons/google.png";
 import github from "../../../assets/icons/github.png";
 import { Text } from "../styles";
 
-function Socials() {
+function Socials({ parent }) {
   return (
     <Container>
-      <Text>Or, login with-</Text>
+      <Text>
+        {parent === "register" ? "Create an account with" : "Or, login with-"}
+      </Text>
       <Icons>
         <Icon title="Facebook">
           <Image src={facebook} alt="facebook icon" />
