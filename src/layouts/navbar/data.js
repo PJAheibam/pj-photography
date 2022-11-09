@@ -11,4 +11,12 @@ export const navLinks = [
     to: "/blog",
     name: "blog",
   },
+  {
+    to: "/my-reviews",
+    name: "my reviews",
+  },
+  {
+    to: "/add-service",
+    name: "Add Service",
+  },
 ];

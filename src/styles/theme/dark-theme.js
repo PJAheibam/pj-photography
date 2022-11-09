@@ -41,6 +41,17 @@ export const darkTheme = {
         text: "hsl(187,20%,6%)",
       },
     },
+    error: {
+      main: {
+        bg: " hsla(0, 70%, 70%)",
+        text: "hsl(0,50%,8%)",
+      },
+      container: {
+        bg: "hsla(0, 20%, 20%)",
+        text: "hsl(0, 70%, 85%)",
+      },
+    },
+
     outline: {
       main: "hsl(145,05%,35%)",
       variant: "hsl(145,05%,25%)",
