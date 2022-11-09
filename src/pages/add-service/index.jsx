@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Main } from "../../components/containers";
 import { Loading, Section } from "./styles";
 import {
@@ -12,18 +12,20 @@ import PrimaryBtn from "../../components/buttons/primary-button";
 import { useFormik } from "formik";
 import { serviceSchema } from "../../schemas/service-form";
 import ReactLoading from "react-loading";
+import Success from "./success";
 
 function AddService() {
   const btnStyle = {
     marginTop: "1rem",
   };
-
+  const [success, setSuccess] = useState(false);
   const {
     values,
     errors,
     handleSubmit,
     handleChange,
     handleBlur,
+    handleReset,
     touched,
     isSubmitting,
   } = useFormik({
@@ -37,23 +39,26 @@ function AddService() {
     validationSchema: serviceSchema,
   });
 
-  function onSubmit(values, actions) {}
+  function onSubmit(values, actions) {
+    setSuccess(true);
+  }
 
-  if (isSubmitting)
-    return (
-      <Main
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <ReactLoading type="spinningBubbles" />
-        <Loading>Submitting...</Loading>
-      </Main>
-    );
+  // if (isSubmitting)
+  //   return (
+  //     <Main
+  //       style={{
+  //         display: "flex",
+  //         justifyContent: "center",
+  //         alignItems: "center",
+  //       }}
+  //     >
+  //       <ReactLoading type="spinningBubbles" />
+  //       <Loading>Submitting...</Loading>
+  //     </Main>
+  //   );
   return (
     <Main>
+      {success && <Success setSuccess={setSuccess} handleReset={handleReset} />}
       <Section as="form" onSubmit={handleSubmit}>
         <Heading>Add Service</Heading>
         <Block>

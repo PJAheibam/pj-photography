@@ -7,6 +7,9 @@ const Container = styled.button`
   border-radius: 2em;
   font-size: inherit;
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
   /* border: 2px solid ${(p) => p.theme.palette.primary.main.bg}; */
   color: ${(p) => p.theme.palette.primary.main.text};
   background-color: ${(p) => p.theme.palette.primary.main.bg};
