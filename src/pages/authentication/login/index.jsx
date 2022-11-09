@@ -7,10 +7,20 @@ import {
   TextField,
   ErrorText,
   AnimationContainer,
+  Text,
+  LinkButton,
 } from "../styles";
 import PrimaryBtn from "../../../components/buttons/primary-button";
+import { useTheme } from "styled-components";
+import Socials from "../socials";
 
 function LoginPage({ style }) {
+  const theme = useTheme();
+  const buttonStyles = {
+    width: "fit-content",
+    marginInline: "auto",
+    color: theme.palette.primary.main.text,
+  };
   return (
     <AnimationContainer style={style}>
       <Heading>Login</Heading>
@@ -20,11 +30,14 @@ function LoginPage({ style }) {
       </Block>
       <Block>
         <Label>Password</Label>
-        <TextField type="password" name="email" placeholder="Your Email" />
+        <TextField type="password" name="password" placeholder="Your Email" />
       </Block>
-      <PrimaryBtn style={{ width: "fit-content", marginInline: "auto" }}>
-        Login
-      </PrimaryBtn>
+      <PrimaryBtn style={buttonStyles}>Login</PrimaryBtn>
+      <Socials />
+      <Text>
+        Don't have an account?{" "}
+        <LinkButton to="/register">Register here</LinkButton>
+      </Text>
     </AnimationContainer>
   );
 }

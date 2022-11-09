@@ -1,13 +1,18 @@
 import { animated } from "react-spring";
 import styled, { css } from "styled-components";
 import { device } from "../../utils/device";
+import { Link } from "react-router-dom";
 
 export const Main = styled.main`
+  margin-top: 72px;
   min-height: calc(100vh - 72px);
+  background-color: ${(p) => p.theme.palette.background.paper[2]};
   @media ${device.sm} {
+    padding-block: 2rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: transparent;
   }
 `;
 
@@ -38,11 +43,12 @@ export const Label = styled.p`
 export const TextField = styled.input.attrs((p) => ({
   autoComplete: "off",
 }))`
+  width: 100%;
   border: 2px solid ${(p) => p.theme.palette.outline.main};
   background-color: transparent;
   color: ${(p) => p.theme.palette.text.primary};
   font-size: clamp(1rem, 4vw, 1.25rem);
-  padding: 0.25em 0.75em;
+  padding: 0.5em 1em;
   border-radius: 0.25em;
   &:focus-visible {
     border: 2px solid ${(p) => p.theme.palette.tertiary.main.bg};
@@ -60,4 +66,10 @@ export const ErrorText = styled.p`
   `}
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  text-align: center;
+`;
+
+export const LinkButton = styled(Link)`
+  color: ${(p) => p.theme.palette.primary.main.bg};
+`;

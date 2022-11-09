@@ -24,6 +24,7 @@ export const GlobaStyles = createGlobalStyle`
         overflow: overlay;
     }
     a{
+        color: ${(p) => p.theme.palette.text.primary};
         text-decoration: none;
     }
     button{
