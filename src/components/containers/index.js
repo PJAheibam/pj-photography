@@ -4,6 +4,7 @@ import maxWidth from "../../styles/max-width";
 export const Main = styled.main`
   display: flex;
   flex-direction: column;
+  min-height: calc(100vh - 72px);
   gap: 5rem;
 `;
 
