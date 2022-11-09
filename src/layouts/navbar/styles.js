@@ -38,7 +38,8 @@ export const ToolBar = styled.div`
   gap: 1rem;
 `;
 
-export const IconButton = styled.button`
+export const IconButton = styled.div`
+  cursor: pointer;
   position: relative;
   display: flex;
   justify-content: center;

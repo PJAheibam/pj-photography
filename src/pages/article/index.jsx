@@ -15,12 +15,10 @@ function Article() {
   }
 
   useEffect(() => {
-    fetch("/articles.json")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/articles/${id}`)
       .then((res) => res.json())
       .then((data) => {
-        const matchedData = data.find((item) => item._id === id);
-        console.log(data);
-        setArticle(matchedData);
+        setArticle(data);
       })
       .catch((err) => console.error(err));
   }, []);

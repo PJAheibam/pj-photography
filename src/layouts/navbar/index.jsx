@@ -43,7 +43,10 @@ function Navbar() {
             </Buttons>
           )}
           {user && user?.uid && (
-            <IconButton onClick={() => setOpenUserMenu((prev) => !prev)}>
+            <IconButton
+              role="button"
+              onClick={() => setOpenUserMenu((prev) => !prev)}
+            >
               <UserIcon />
               {openUserMenu && <UserMenu />}
             </IconButton>

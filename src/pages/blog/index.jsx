@@ -24,7 +24,7 @@ function Blog() {
 
   // side effects
   useEffect(() => {
-    fetch("articles.json")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/articles`)
       .then((res) => res.json())
       .then((data) => setArticles(data))
       .catch((err) => console.error(err));

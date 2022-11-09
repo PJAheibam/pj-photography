@@ -23,6 +23,7 @@ export function register(email, password) {
 }
 
 export function logout() {
+  console.info("Clicked");
   signOut(auth)
     .then(() => console.info("Log Out Successfull!"))
     .catch((err) => console.error(err));

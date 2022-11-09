@@ -25,7 +25,7 @@ function HeroSection() {
   };
   //    side  effects
   useEffect(() => {
-    fetch("services.json")
+    fetch(`${process.env.REACT_APP_SERVER_URL}/services?limit=3`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
