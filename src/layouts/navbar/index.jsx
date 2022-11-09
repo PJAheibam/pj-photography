@@ -11,10 +11,12 @@ import { useComponentSize } from "react-use-size";
 import { Link } from "react-router-dom";
 import { UserIcon } from "../../components/user-icon";
 import { useAuthContext } from "../../context/auth-contex";
+import UserMenu from "./user-menu";
 
 function Navbar() {
   const { user, loading } = useAuthContext();
   const [open, setOpen] = useState(false);
+  const [openUserMenu, setOpenUserMenu] = useState(false);
   const { ref, width } = useComponentSize();
   function toggleMenu() {
     setOpen((prev) => !prev);
@@ -26,7 +28,7 @@ function Navbar() {
         <Logo style={{ marginRight: "auto" }} />
         <ToolBar>
           {width >= 780 && <NavMenu />}
-          {!loading && !user && (
+          {!user && (
             <Buttons>
               {width >= 500 && (
                 <SecondaryBtn as={Link} to="/login">
@@ -40,9 +42,10 @@ function Navbar() {
               )}
             </Buttons>
           )}
-          {!loading && user && user?.uid && (
-            <IconButton>
+          {user && user?.uid && (
+            <IconButton onClick={() => setOpenUserMenu((prev) => !prev)}>
               <UserIcon />
+              {openUserMenu && <UserMenu />}
             </IconButton>
           )}
           {width < 780 && (

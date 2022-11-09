@@ -39,6 +39,7 @@ export const ToolBar = styled.div`
 `;
 
 export const IconButton = styled.button`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
