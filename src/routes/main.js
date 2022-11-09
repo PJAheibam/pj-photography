@@ -8,6 +8,7 @@ import AuthPage from "../pages/authentication";
 import MyReviews from "../pages/my-reviews";
 import AddServices from "../pages/add-service";
 import PrivateRoute from "./private-route";
+import Article from "../pages/article";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "blog",
         element: <Blog />,
+      },
+      {
+        path: "blog/:id",
+        element: <Article />,
       },
       {
         path: "my-reviews",
