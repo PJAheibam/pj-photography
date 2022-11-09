@@ -20,7 +20,7 @@ export const Container = styled.article`
   position: relative;
 `;
 
-export const AnimationContainer = styled(animated.div)`
+export const AnimationContainer = styled(animated.form)`
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
@@ -61,8 +61,8 @@ export const ErrorText = styled.p`
     display: inline-block;
     font-size: 0.95rem;
     padding: 0.25em 0.75em;
-    color: hsla(0, 70%, 60%);
-    background-color: hsla(0, 30%, 35%);
+    color: hsla(0, 70%, 70%);
+    background-color: hsla(0, 20%, 20%);
   `}
 `;
 
