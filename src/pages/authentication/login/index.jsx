@@ -42,7 +42,7 @@ function LoginPage({ style }) {
     try {
       setLoading(true);
       const res = await login(values.email, values.password);
-      console.info(res);
+      actions.resetForm();
     } catch (err) {
       switch (err.code) {
         case "auth/user-not-found":

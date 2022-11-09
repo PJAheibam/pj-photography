@@ -13,8 +13,11 @@ import PrimaryBtn from "../../../components/buttons/primary-button";
 import Socials from "../socials";
 import { useFormik } from "formik";
 import { regFormSchema } from "../../../schemas/registration-form";
+import { useAuthContext } from "../../../context/auth-contex";
+import { updateProfile } from "firebase/auth";
 
 function RegisterPage() {
+  const { register, setLoading } = useAuthContext();
   const btnStyles = {
     marginInline: "auto",
   };
@@ -26,7 +29,20 @@ function RegisterPage() {
       validationSchema: regFormSchema,
     });
 
-  function onSubmit(values, actions) {}
+  async function onSubmit(values, actions) {
+    try {
+      const res = await register(values.email, values.password);
+      if (values.image_url) {
+        await updateProfile(res.user, {
+          photoURL: values.image_url,
+        });
+      }
+      // actions.formReset();
+    } catch (err) {
+      setLoading(false);
+      console.log(err);
+    }
+  }
 
   return (
     <AnimationContainer onSubmit={handleSubmit}>

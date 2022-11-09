@@ -21,7 +21,7 @@ function Logo({ style }) {
   return (
     <Container to="/" style={style}>
       <img height={40} src={logo} atl="PJ Photography" />
-      <Text>PJ Photography</Text>
+      <Text>Picturesque</Text>
     </Container>
   );
 }

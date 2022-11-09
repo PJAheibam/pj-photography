@@ -43,6 +43,7 @@ export const Heading = styled.h1`
 `;
 
 export const Block = styled.label``;
+
 export const Label = styled.p`
   margin-bottom: 0.25em;
 `;
