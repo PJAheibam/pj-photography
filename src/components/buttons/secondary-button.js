@@ -5,6 +5,7 @@ const Container = styled.button`
   text-transform: uppercase;
   padding: 0.5em 1em;
   border-radius: 2em;
+  font-size: inherit;
   /* border: 2px solid ${(p) => p.theme.palette.primary.main.bg}; */
   color: ${(p) => p.theme.palette.secondary.main.text};
   background-color: ${(p) => p.theme.palette.secondary.main.bg};

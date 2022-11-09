@@ -48,5 +48,6 @@ export const SubHeading = styled.h2`
 export const Buttons = styled.div`
   display: flex;
   gap: 1rem;
+  font-size: clamp(1rem, 4vw, 1.25rem);
   margin-top: 2rem;
 `;

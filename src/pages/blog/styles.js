@@ -41,7 +41,9 @@ export const Content = styled.div`
   gap: 1rem;
 `;
 
-export const Title = styled.h1``;
+export const Title = styled.h1`
+  font-size: clamp(1rem, 5vw, 1.35rem);
+`;
 
 export const Desc = styled.p``;
 

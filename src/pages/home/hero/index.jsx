@@ -44,12 +44,8 @@ function HeroSection() {
                 <Heading> {service.name} </Heading>
                 <SubHeading> {service.sub_heading} </SubHeading>
                 <Buttons>
-                  <PrimaryBtn style={{ fontSize: "1.5rem" }}>
-                    Hire Me
-                  </PrimaryBtn>
-                  <SecondaryBtn style={{ fontSize: "1.5rem" }}>
-                    More Services
-                  </SecondaryBtn>
+                  <PrimaryBtn>Hire Me</PrimaryBtn>
+                  <SecondaryBtn>More Services</SecondaryBtn>
                 </Buttons>
               </Content>
             </SlideItem>

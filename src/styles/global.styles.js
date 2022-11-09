@@ -16,6 +16,7 @@ export const GlobaStyles = createGlobalStyle`
         font-family: 'Poppins', sans-serif;;
         color: ${(p) => p.theme.palette.text.primary};
         background-color: ${(p) => p.theme.palette.background.default};
+        overflow: overlay;
     }
     a{
         text-decoration: none;
