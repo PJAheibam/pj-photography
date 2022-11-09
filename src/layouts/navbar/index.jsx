@@ -29,7 +29,7 @@ function Navbar() {
                 Login
               </SecondaryBtn>
             )}
-            {width >= 605 && (
+            {width >= 615 && (
               <PrimaryBtn as={Link} to="/register">
                 Register
               </PrimaryBtn>

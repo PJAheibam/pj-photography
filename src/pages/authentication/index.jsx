@@ -12,8 +12,10 @@ function AuthPage() {
 
   return (
     <Main>
-      {type === "login" && <LoginPage />}
-      {type === "register" && <RegisterPage />}
+      <Container>
+        {type === "login" && <LoginPage />}
+        {type === "register" && <RegisterPage />}
+      </Container>
     </Main>
   );
 }

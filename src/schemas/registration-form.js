@@ -5,8 +5,6 @@ const REQUIRED = "Required!";
 const URL_REGEX =
   /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
 
-Yup.string().matches(re, "URL is not valid");
-
 export const regFormSchema = yup.object().shape({
   full_name: yup.string().min(3).required(REQUIRED),
   email: yup.string().email("Enter an valid email address.").required(REQUIRED),

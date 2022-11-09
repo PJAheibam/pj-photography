@@ -18,6 +18,12 @@ export const Main = styled.main`
 
 export const Container = styled.article`
   position: relative;
+  width: 100%;
+  /* max-width: 500px; */
+  @media ${device.sm} {
+    width: 30%;
+    min-width: 500px;
+  }
 `;
 
 export const AnimationContainer = styled(animated.form)`
@@ -26,6 +32,7 @@ export const AnimationContainer = styled(animated.form)`
   gap: 1.25rem;
   padding: 2rem;
   border-radius: 1rem;
+  width: 100%;
   background-color: ${(p) => p.theme.palette.background.paper[2]};
   /* position: absolute; */
 `;
@@ -49,6 +56,7 @@ export const TextField = styled.input.attrs((p) => ({
   color: ${(p) => p.theme.palette.text.primary};
   font-size: clamp(1rem, 4vw, 1.25rem);
   padding: 0.5em 1em;
+  margin-bottom: 0.5em;
   border-radius: 0.25em;
   &:focus-visible {
     border: 2px solid ${(p) => p.theme.palette.tertiary.main.bg};
@@ -58,7 +66,7 @@ export const TextField = styled.input.attrs((p) => ({
 
 export const ErrorText = styled.p`
   ${(p) => css`
-    display: inline-block;
+    width: 100%;
     font-size: 0.95rem;
     padding: 0.25em 0.75em;
     color: hsla(0, 70%, 70%);
