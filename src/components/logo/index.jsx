@@ -19,7 +19,7 @@ const Text = styled.span`
 
 function Logo({ style }) {
   return (
-    <Container style={style}>
+    <Container to="/" style={style}>
       <img height={40} src={logo} atl="PJ Photography" />
       <Text>PJ Photography</Text>
     </Container>
