@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {
+  Main,
   Container,
   Heading,
   Block,
@@ -16,8 +17,12 @@ import Socials from "../socials";
 import { useFormik } from "formik";
 import { loginFormSchema } from "../../../schemas/login-form";
 import { useAuthContext } from "../../../context/auth-contex";
+import { useLocation, useNavigate } from "react-router-dom";
 
 function LoginPage({ style }) {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const theme = useTheme();
   const [error, setError] = useState(null);
   const { login, setLoading } = useAuthContext();
@@ -42,11 +47,16 @@ function LoginPage({ style }) {
     try {
       setLoading(true);
       const res = await login(values.email, values.password);
+      console.log(res);
+      if (res?.user && res?.user?.uid) navigate(from, { replace: true });
       actions.resetForm();
     } catch (err) {
       switch (err.code) {
         case "auth/user-not-found":
           setError("User not found!");
+          break;
+        case "auth/wrong-password":
+          setError("Wrong Password");
           break;
         default:
           setError(err.code);
@@ -57,58 +67,64 @@ function LoginPage({ style }) {
   }
 
   return (
-    <AnimationContainer onSubmit={handleSubmit} style={style}>
-      <Heading>Login</Heading>
-      {error && (
-        <ErrorText
-          style={{
-            textAlign: "center",
-            padding: "1em 1em",
-            fonSize: "1rem",
-            border: "2px solid rgba(255,255,255,0.05)",
-            borderRadius: "0.35rem",
-          }}
-        >
-          {error}
-        </ErrorText>
-      )}
-      <Block>
-        <Label>Email</Label>
-        <TextField
-          type="email"
-          name="email"
-          placeholder="Your Email"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.email && touched.email ? "true" : undefined}
-        />
-        {errors.email && touched.email && <ErrorText>{errors.email}</ErrorText>}
-      </Block>
-      <Block>
-        <Label>Password</Label>
-        <TextField
-          type="password"
-          name="password"
-          placeholder="Your Email"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          error={errors.password && touched.password ? "true" : undefined}
-        />
-        {errors.password && touched.password && (
-          <ErrorText>{errors.password}</ErrorText>
-        )}
-      </Block>
-      <PrimaryBtn type="submit" style={buttonStyles}>
-        Login
-      </PrimaryBtn>
-      <Socials />
-      <Text>
-        Don't have an account?{" "}
-        <LinkButton to="/register">Register here</LinkButton>
-      </Text>
-    </AnimationContainer>
+    <Main>
+      <Container>
+        <AnimationContainer onSubmit={handleSubmit} style={style}>
+          <Heading>Login</Heading>
+          {error && (
+            <ErrorText
+              style={{
+                textAlign: "center",
+                padding: "1em 1em",
+                fonSize: "1rem",
+                border: "2px solid rgba(255,255,255,0.05)",
+                borderRadius: "0.35rem",
+              }}
+            >
+              {error}
+            </ErrorText>
+          )}
+          <Block>
+            <Label>Email</Label>
+            <TextField
+              type="email"
+              name="email"
+              placeholder="Your Email"
+              value={values.email}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.email && touched.email ? "true" : undefined}
+            />
+            {errors.email && touched.email && (
+              <ErrorText>{errors.email}</ErrorText>
+            )}
+          </Block>
+          <Block>
+            <Label>Password</Label>
+            <TextField
+              type="password"
+              name="password"
+              placeholder="Your Email"
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={errors.password && touched.password ? "true" : undefined}
+            />
+            {errors.password && touched.password && (
+              <ErrorText>{errors.password}</ErrorText>
+            )}
+          </Block>
+          <PrimaryBtn type="submit" style={buttonStyles}>
+            Login
+          </PrimaryBtn>
+          <Socials location={location} />
+          <Text>
+            Don't have an account?{" "}
+            <LinkButton to="/register">Register here</LinkButton>
+          </Text>
+        </AnimationContainer>
+      </Container>
+    </Main>
   );
 }
 

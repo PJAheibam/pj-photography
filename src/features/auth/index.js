@@ -34,10 +34,10 @@ export function useAuthObserver(setLoading, setUser) {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
-        setLoading(false);
       } else setUser(null);
+      setLoading(false);
     });
-    setLoading(false);
+    // setLoading(false);
     return () => unsubscribe();
   }, []);
   return null;

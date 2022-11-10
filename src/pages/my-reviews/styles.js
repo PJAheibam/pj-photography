@@ -58,3 +58,7 @@ export const Buttons = styled.div`
   display: flex;
   gap: 1rem;
 `;
+
+export const NoDataText = styled.p`
+  font-size: 2rem;
+`;

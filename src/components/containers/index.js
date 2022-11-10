@@ -14,7 +14,7 @@ export const Section = styled.article`
   padding: 2rem;
   ${maxWidth}
   @media ${device.xl} {
-    max-width: 1280px;
+    width: 1280px;
     padding-inline: 2rem;
     margin-inline: auto;
   }

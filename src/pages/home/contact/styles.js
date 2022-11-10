@@ -4,7 +4,6 @@ import { device } from "../../../utils/device";
 
 export const Container = styled(Section)`
   display: flex;
-  width: 100%;
   justify-content: center;
   flex-direction: column;
   gap: 1.5rem;
@@ -12,6 +11,7 @@ export const Container = styled(Section)`
   @media ${device.sm} {
     gap: 3rem;
     flex-direction: row;
+    border-radius: 1rem;
   }
 `;
 

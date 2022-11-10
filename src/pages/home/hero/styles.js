@@ -8,6 +8,7 @@ export const Container = styled(Section)`
   width: 100vw;
   overflow: hidden;
   @media ${device.xl} {
+    width: 1280px;
     border-radius: 1rem;
     padding: 0;
     margin-top: 2rem;

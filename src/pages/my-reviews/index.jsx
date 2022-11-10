@@ -1,7 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../components/containers";
 import { useAuthContext } from "../../context/auth-contex";
-import { Desc, HeaderImage, Item, ItemHeader, Section, Title } from "./styles";
+import {
+  Desc,
+  HeaderImage,
+  Item,
+  ItemHeader,
+  NoDataText,
+  Section,
+  Title,
+} from "./styles";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import Rating from "../../components/rating";
 import { Link } from "react-router-dom";
@@ -10,7 +18,7 @@ function MyReviews() {
   const [myReviews, setMyReviews] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuthContext();
-  console.info(myReviews);
+
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
       .then((res) => res.json())
@@ -38,28 +46,40 @@ function MyReviews() {
       });
   }, []);
   if (loading) return null;
-  if (!loading)
+  if (JSON.stringify(myReviews) === "[]")
+    return (
+      <Main
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <NoDataText>You haven't give a review yet</NoDataText>
+      </Main>
+    );
+
+  if (myReviews)
     return (
       <Main>
         <Section>
-          {myReviews &&
-            myReviews.map((review, i) => (
-              <Item key={i}>
-                <ItemHeader>
-                  <HeaderImage src={review.image_url} alt="thumbnail" />
-                </ItemHeader>
-                <Title>{review.service_name}</Title>
-                <Rating value={review.rating} readOnly />
-                <Desc>{review.text}</Desc>
-                <SecondaryBtn
-                  style={{ width: "fit-content" }}
-                  as={Link}
-                  to={`/services/${review.service_id}`}
-                >
-                  Edit
-                </SecondaryBtn>
-              </Item>
-            ))}
+          {myReviews.map((review, i) => (
+            <Item key={i}>
+              <ItemHeader>
+                <HeaderImage src={review.image_url} alt="thumbnail" />
+              </ItemHeader>
+              <Title>{review.service_name}</Title>
+              <Rating value={review.rating} readOnly />
+              <Desc>{review.text}</Desc>
+              <SecondaryBtn
+                style={{ width: "fit-content" }}
+                as={Link}
+                to={`/services/${review.service_id}`}
+              >
+                Edit
+              </SecondaryBtn>
+            </Item>
+          ))}
         </Section>
       </Main>
     );

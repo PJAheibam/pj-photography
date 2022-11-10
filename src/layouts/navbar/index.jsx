@@ -21,8 +21,7 @@ import { useAuthContext } from "../../context/auth-contex";
 import UserMenu from "./user-menu";
 
 function Navbar() {
-  const { user, loading } = useAuthContext();
-  console.info(user);
+  const { user } = useAuthContext();
   const [open, setOpen] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { ref, width } = useComponentSize();

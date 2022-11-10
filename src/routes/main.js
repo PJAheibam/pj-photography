@@ -9,6 +9,9 @@ import MyReviews from "../pages/my-reviews";
 import AddServices from "../pages/add-service";
 import PrivateRoute from "./private-route";
 import Article from "../pages/article";
+import PageNotFound from "../pages/page-not-found";
+import LoginPage from "../pages/authentication/login";
+import RegisterPage from "../pages/authentication/register";
 
 export const router = createBrowserRouter([
   {
@@ -52,8 +55,16 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: ":type",
-        element: <AuthPage />, // this page will handle NO-PAGE-FOUND path
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "*",
+        element: <PageNotFound />, // this page will handle NO-PAGE-FOUND path
       },
     ],
   },

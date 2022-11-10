@@ -27,7 +27,11 @@ function UserMenu({ setOpenUserMenu }) {
 
   return (
     <Container ref={containerRef}>
-      {user && user?.uid && <Item>{user?.displayName.split(" ")[0]}</Item>}
+      {user && user?.uid && (
+        <Item style={{ pointerEvents: "none" }}>
+          {user?.displayName.split(" ")[0]}
+        </Item>
+      )}
       <Item>
         <Icon>
           <DashIcon />
