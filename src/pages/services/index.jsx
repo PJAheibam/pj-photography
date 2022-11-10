@@ -13,6 +13,7 @@ import {
 import { shortText } from "../../utils/short-text";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import SecondaryBtn from "../../components/buttons/secondary-button";
+import { Link } from "react-router-dom";
 
 function Services() {
   const [services, setServices] = useState(null);
@@ -46,7 +47,9 @@ function Services() {
                 <Desc>{shortText(service.desc)}</Desc>
               </Content>
               <Buttons>
-                <PrimaryBtn>Details</PrimaryBtn>
+                <PrimaryBtn as={Link} to={service._id}>
+                  Details
+                </PrimaryBtn>
               </Buttons>
             </Item>
           ))}

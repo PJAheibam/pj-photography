@@ -7,6 +7,10 @@ export const Container = styled(Section)`
   padding: 0;
   width: 100vw;
   overflow: hidden;
+  @media ${device.xl} {
+    border-radius: 1rem;
+    margin-top: 2rem;
+  }
 `;
 
 export const SlideItem = styled.div`

@@ -1,7 +1,7 @@
 import React from "react";
 
-function ReviesForm() {
-  return <div>ReviesForm</div>;
+function ReviewForm() {
+  return <div>ReviewForm</div>;
 }
 
-export default ReviesForm;
+export default ReviewForm;
