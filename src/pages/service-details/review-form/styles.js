@@ -10,3 +10,8 @@ export const Container = styled.form`
 export const Heading = styled.h1`
   text-transform: uppercase;
 `;
+
+export const Footer = styled.div`
+  display: flex;
+  gap: 1rem;
+`;

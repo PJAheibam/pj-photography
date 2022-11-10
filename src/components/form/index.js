@@ -5,7 +5,9 @@ export const Heading = styled.h1`
   text-align: center;
 `;
 
-export const Block = styled.label``;
+export const Block = styled.label`
+  pointer-events: ${(p) => (p.readonly ? "none" : "all")};
+`;
 
 export const Label = styled.p`
   margin-bottom: 0.25em;
@@ -14,6 +16,7 @@ export const Label = styled.p`
 export const TextField = styled.input.attrs((p) => ({
   autoComplete: "off",
 }))`
+  pointer-events: ${(p) => (p.readonly ? "none" : "all")};
   width: 100%;
   border: 2px solid
     ${(p) =>

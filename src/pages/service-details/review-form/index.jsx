@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Heading } from "./styles";
+import { Footer, Heading } from "./styles";
 import * as yup from "yup";
 import { Container } from "./styles";
 import { Block, Label, TextField, ErrorText } from "../../../components/form";
@@ -7,31 +7,43 @@ import { useFormik } from "formik";
 import { useAuthContext } from "../../../context/auth-contex";
 import Rating from "../../../components/rating";
 import SecondaryBtn from "../../../components/buttons/secondary-button";
+import PrimaryBtn from "../../../components/buttons/primary-button";
 
 const schema = yup.object().shape({
   text: yup.string().min(3).required("Required!"),
 });
 
-function ReviewForm({ id }) {
+function ReviewForm({ id, reviews = [], myReview }) {
   const [error, setError] = useState(null);
   const { user } = useAuthContext();
   const [rating, setRating] = useState(0);
+  const [readonly, setReadonly] = useState(false);
+  console.info(readonly);
+  console.info("form", myReview);
 
-  const { values, errors, handleSubmit, handleBlur, handleChange, touched } =
-    useFormik({
-      initialValues: {
-        text: "",
-      },
-      onSubmit,
-      validationSchema: schema,
-    });
+  const {
+    values,
+    errors,
+    handleSubmit,
+    handleBlur,
+    handleChange,
+    touched,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      text: myReview?.text,
+    },
+    onSubmit,
+    validationSchema: schema,
+  });
 
   function onSubmit(values, actions) {
+    console.info("submit clicked");
     if (!rating) {
       setError("Required");
       return;
     }
-    console.info(user);
+
     const data = {
       uid: user?.uid,
       name: user?.displayName,
@@ -40,31 +52,42 @@ function ReviewForm({ id }) {
       date: new Date(),
       rating,
     };
-    console.info(data);
 
     // fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
-    //   method: "PUT",
+    //   method: "PATCH",
     //   headers: {
     //     "content-type": "application/json",
     //   },
-    //   body: data,
-    // });
+    //   body: JSON.stringify([data, ...reviews]),
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.acknowledged) setReadonly(true);
+    //     console.log(data);
+    //   });
   }
 
   useEffect(() => {
     if (rating > 0) setError(null);
   }, [rating]);
 
+  useEffect(() => {
+    setReadonly(myReview ? true : false);
+    setRating(myReview?.rating || null);
+    setFieldValue("text", myReview?.text || "");
+  }, [myReview]);
+
   return (
     <Container onSubmit={handleSubmit}>
       <Heading>Rate this service</Heading>
       <div style={{ width: "fit-content" }}>
-        <Rating value={rating} setValue={setRating} />
+        <Rating readOnly={readonly} value={rating} setValue={setRating} />
         {error && <ErrorText>Required!</ErrorText>}
       </div>
-      <Block>
+      <Block readonly={readonly}>
         <Label>Describe Your Experience</Label>
         <TextField
+          readonly={readonly}
           name="text"
           type="text"
           as="textarea"
@@ -75,9 +98,33 @@ function ReviewForm({ id }) {
         />
         {errors.text && touched.text && <ErrorText> {errors.text} </ErrorText>}
       </Block>
-      <SecondaryBtn style={{ width: "fit-content" }} type="submit">
-        Submit
-      </SecondaryBtn>
+      <Footer>
+        {!readonly && (
+          <PrimaryBtn style={{ width: "fit-content" }} type="submit">
+            {myReview ? "Save Changes" : "Submit"}
+          </PrimaryBtn>
+        )}
+        {readonly && (
+          <SecondaryBtn
+            type="button"
+            onClick={(e) => setReadonly((prev) => !prev)}
+            style={{ width: "fit-content" }}
+          >
+            {" "}
+            Edit Your Review
+          </SecondaryBtn>
+        )}
+        {!readonly && myReview && (
+          <SecondaryBtn
+            type="button"
+            onClick={(e) => setReadonly((prev) => !prev)}
+            style={{ width: "fit-content" }}
+          >
+            {" "}
+            Cancel Edit
+          </SecondaryBtn>
+        )}
+      </Footer>
     </Container>
   );
 }

@@ -5,14 +5,16 @@ import { Heading, Section, Header, Text } from "./styles";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import Reviews from "./reviews";
+import { useAuthContext } from "../../context/auth-contex";
 import ReviewForm from "./review-form";
 // import useAuthContext from "../../context/auth-contex";
 
 function ServiceDetails() {
-  // const { user, loading } = useAuthContext();
+  const { user } = useAuthContext();
   const { id } = useParams();
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
+  const myReview = service?.reviews?.find((data) => data?.uid === user?.uid);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -28,7 +30,7 @@ function ServiceDetails() {
       });
   }, []);
 
-  if (service)
+  if (!loading && service)
     return (
       <Main>
         <Header style={{ backgroundImage: `url(${service.image_url})` }} />
@@ -39,7 +41,7 @@ function ServiceDetails() {
         </Section>
         <Section>
           <Reviews />
-          <ReviewForm />
+          <ReviewForm id={id} myReview={myReview} reviews={service?.reviews} />
         </Section>
       </Main>
     );
