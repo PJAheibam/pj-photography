@@ -32,12 +32,12 @@ function RegisterPage() {
   async function onSubmit(values, actions) {
     try {
       const res = await register(values.email, values.password);
-      if (values.image_url) {
-        await updateProfile(res.user, {
-          photoURL: values.image_url,
-          displayName: values.full_name,
-        });
-      }
+
+      await updateProfile(res.user, {
+        photoURL: values.image_url,
+        displayName: values.full_name,
+      });
+
       // actions.formReset();
     } catch (err) {
       setLoading(false);

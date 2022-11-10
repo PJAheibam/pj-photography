@@ -8,6 +8,7 @@ function Rating({ value, setValue, readOnly = false }) {
     <Container style={{ pointerEvents: readOnly ? "none" : "auto" }}>
       {[...Array(5).keys()].map((i) => (
         <Star
+          type="button"
           key={i}
           onClick={() => setValue(i + 1)}
           onMouseEnter={() => setHover(i + 1)}

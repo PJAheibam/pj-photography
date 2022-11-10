@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.label`
   display: flex;
   font-size: 1.15rem;
   gap: 0.25em;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Heading } from "./styles";
 import * as yup from "yup";
 import { Container } from "./styles";
@@ -9,18 +9,17 @@ import Rating from "../../../components/rating";
 import SecondaryBtn from "../../../components/buttons/secondary-button";
 
 const schema = yup.object().shape({
-  rating: yup.number().required("Required"),
   text: yup.string().min(3).required("Required!"),
 });
 
 function ReviewForm({ id }) {
+  const [error, setError] = useState(null);
   const { user } = useAuthContext();
   const [rating, setRating] = useState(0);
 
   const { values, errors, handleSubmit, handleBlur, handleChange, touched } =
     useFormik({
       initialValues: {
-        rating,
         text: "",
       },
       onSubmit,
@@ -28,13 +27,18 @@ function ReviewForm({ id }) {
     });
 
   function onSubmit(values, actions) {
+    if (!rating) {
+      setError("Required");
+      return;
+    }
     console.info(user);
     const data = {
       uid: user?.uid,
       name: user?.displayName,
       email: user?.email,
       text: values.text,
-      rating: values.rating,
+      date: new Date(),
+      rating,
     };
     console.info(data);
 
@@ -47,12 +51,17 @@ function ReviewForm({ id }) {
     // });
   }
 
+  useEffect(() => {
+    if (rating > 0) setError(null);
+  }, [rating]);
+
   return (
     <Container onSubmit={handleSubmit}>
       <Heading>Rate this service</Heading>
-      <Block style={{ width: "fit-content" }}>
+      <div style={{ width: "fit-content" }}>
         <Rating value={rating} setValue={setRating} />
-      </Block>
+        {error && <ErrorText>Required!</ErrorText>}
+      </div>
       <Block>
         <Label>Describe Your Experience</Label>
         <TextField
