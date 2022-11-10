@@ -2,11 +2,11 @@ import React from "react";
 import NavMenu from "../nav-menu";
 import { Container, Heading } from "./styles";
 
-function NavDrawer({ style }) {
+function NavDrawer({ style, setOpen }) {
   return (
     <Container style={style}>
       <Heading>Menu</Heading>
-      <NavMenu direction="vertical" />
+      <NavMenu setOpen={setOpen} direction="vertical" />
     </Container>
   );
 }

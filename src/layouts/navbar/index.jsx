@@ -59,7 +59,7 @@ function Navbar() {
           )}
         </ToolBar>
       </AppBar>
-      {open && <NavDrawer />}
+      {open && <NavDrawer setOpen={setOpen} />}
     </>
   );
 }
