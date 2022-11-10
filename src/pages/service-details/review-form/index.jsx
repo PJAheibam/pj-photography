@@ -1,14 +1,17 @@
 import React, { useState } from "react";
-<<<<<<< HEAD
-import Rating from "../../../components/rating";
-
-
+import { Heading } from "./styles";
 import * as yup from "yup";
 import { Container } from "./styles";
 import { Block, Label, TextField, ErrorText } from "../../../components/form";
 import { useFormik } from "formik";
 import { useAuthContext } from "../../../context/auth-contex";
 import Rating from "../../../components/rating";
+import SecondaryBtn from "../../../components/buttons/secondary-button";
+
+const schema = yup.object().shape({
+  rating: yup.number().required("Required"),
+  text: yup.string().min(3).required("Required!"),
+});
 
 function ReviewForm({ id }) {
   const { user } = useAuthContext();
@@ -17,14 +20,15 @@ function ReviewForm({ id }) {
   const { values, errors, handleSubmit, handleBlur, handleChange, touched } =
     useFormik({
       initialValues: {
-        rating: null,
-        text: rating,
+        rating,
+        text: "",
       },
       onSubmit,
       validationSchema: schema,
     });
 
   function onSubmit(values, actions) {
+    console.info(user);
     const data = {
       uid: user?.uid,
       name: user?.displayName,
@@ -32,32 +36,28 @@ function ReviewForm({ id }) {
       text: values.text,
       rating: values.rating,
     };
+    console.info(data);
 
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: data,
-    });
+    // fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
+    //   method: "PUT",
+    //   headers: {
+    //     "content-type": "application/json",
+    //   },
+    //   body: data,
+    // });
   }
 
   return (
-    <Container as="form" onSubmit={handleSubmit}>
+    <Container onSubmit={handleSubmit}>
       <Heading>Rate this service</Heading>
-      <Block>
+      <Block style={{ width: "fit-content" }}>
         <Rating value={rating} setValue={setRating} />
-        <TextField
-          style={{ display: "none" }}
-          type="number"
-          name="rating"
-          value={values.rating}
-        />
       </Block>
       <Block>
         <Label>Describe Your Experience</Label>
         <TextField
           name="text"
+          type="text"
           as="textarea"
           value={values.text}
           onChange={handleChange}
@@ -66,14 +66,11 @@ function ReviewForm({ id }) {
         />
         {errors.text && touched.text && <ErrorText> {errors.text} </ErrorText>}
       </Block>
+      <SecondaryBtn style={{ width: "fit-content" }} type="submit">
+        Submit
+      </SecondaryBtn>
     </Container>
->>>>>>> 49b0acfe263af8ccee67bf3f6d988f2297eb801b
   );
 }
 
 export default ReviewForm;
-
-const schema = yup.object().shape({
-  rating: yup.number.required("Required"),
-  text: yup.string().min(3).required("Required!"),
-});
