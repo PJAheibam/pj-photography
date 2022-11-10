@@ -41,7 +41,7 @@ function ServiceDetails() {
         </Section>
         <Section>
           <Reviews
-            reviews={service?.reviews.filter((rv) => rv?.uid !== user?.uid)}
+            reviews={service?.reviews?.filter((rv) => rv?.uid !== user?.uid)}
           />
           {!user && (
             <SecondaryBtn

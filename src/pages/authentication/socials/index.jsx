@@ -4,11 +4,12 @@ import facebook from "../../../assets/icons/facebook.png";
 import google from "../../../assets/icons/google.png";
 import github from "../../../assets/icons/github.png";
 import { Text } from "../styles";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { useAuthContext } from "../../../context/auth-contex";
 
 function Socials({ parent }) {
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
   const { loginWithPopup, setLoading } = useAuthContext();
 
   function handleLogin(provider) {
@@ -28,13 +29,11 @@ function Socials({ parent }) {
         {parent === "register" ? "Create an account with" : "Or, login with-"}
       </Text>
       <Icons>
-        <Icon title="Facebook">
-          <Image src={facebook} alt="facebook icon" />
-        </Icon>
-        <Icon onClick={() => handleLogin(googleProvider)}>
+        <Icon type="button" onClick={() => handleLogin(googleProvider)}>
           <Image title="Google" src={google} alt="google icon" />
         </Icon>
-        <Icon>
+
+        <Icon type="button" onClick={() => handleLogin(githubProvider)}>
           <Image title="Github" src={github} alt="github icon" />
         </Icon>
       </Icons>

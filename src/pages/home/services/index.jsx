@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { Main } from "../../components/containers";
+import React, { useState, useEffect } from "react";
 import {
+  Container,
+  Heading,
+  SubHeading,
   Buttons,
   Content,
   Desc,
@@ -10,18 +12,18 @@ import {
   Items,
   Title,
 } from "./styles";
-import { shortText } from "../../utils/short-text";
-import PrimaryBtn from "../../components/buttons/primary-button";
-import SecondaryBtn from "../../components/buttons/secondary-button";
+import { shortText } from "../../../utils/short-text";
+import PrimaryBtn from "../../../components/buttons/primary-button";
 import { Link } from "react-router-dom";
+import SecondaryBtn from "../../../components/buttons/secondary-button";
 
-function Services() {
+function ServicesSection() {
   const [services, setServices] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // side effects
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/services?limit=6`)
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
@@ -32,9 +34,13 @@ function Services() {
         setLoading(false);
       });
   }, []);
-
   return (
-    <Main>
+    <Container>
+      <Heading>Feature Services</Heading>
+      <SubHeading>
+        PICTURESQUE THE CLASSIC KNOWLEDGE OF TRADITIONAL PHOTOGRAPHIC
+        PORTRAITURE AND LIGHTING WITH AN INNOVATIVE AND CONTEMPORARY STYLE.
+      </SubHeading>
       <Items>
         {services &&
           services.map((service) => (
@@ -54,8 +60,15 @@ function Services() {
             </Item>
           ))}
       </Items>
-    </Main>
+      <SecondaryBtn
+        style={{ width: "fit-content", marginInline: "auto" }}
+        to="/services"
+        as={Link}
+      >
+        View More
+      </SecondaryBtn>
+    </Container>
   );
 }
 
-export default Services;
+export default ServicesSection;

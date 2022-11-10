@@ -9,13 +9,14 @@ export const Container = styled(Section)`
   overflow: hidden;
   @media ${device.xl} {
     border-radius: 1rem;
+    padding: 0;
     margin-top: 2rem;
   }
 `;
 
 export const SlideItem = styled.div`
   padding: 2rem;
-  height: clamp(300px, 70vh, 500px);
+  height: clamp(300px, 70vh, 400px);
   ${maxWidth};
   background-position: center;
   background-repeat: no-repeat;
@@ -24,6 +25,7 @@ export const SlideItem = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -34,7 +36,7 @@ export const Content = styled.div`
 `;
 export const Heading = styled.h1`
   text-align: center;
-  font-size: ${(p) => `clamp(2rem, 5vw, ${p.theme.fontSize.display.lg})`};
+  font-size: clamp(1.25rem, 5vw, 2.25rem);
   text-transform: capitalize;
   @media ${device.sm} {
     text-align: left;
@@ -43,7 +45,7 @@ export const Heading = styled.h1`
 
 export const SubHeading = styled.h2`
   text-align: center;
-  font-size: ${(p) => `clamp(1.25rem, 3vw, ${p.theme.fontSize.headline.lg})`};
+  font-size: clamp(1rem, 5vw, 1.5rem);
   @media ${device.sm} {
     text-align: left;
   }
