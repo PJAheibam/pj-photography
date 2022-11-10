@@ -5,6 +5,7 @@ import { Heading, Section, Header, Text } from "./styles";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import Reviews from "./reviews";
+import ReviewForm from "./review-form";
 // import useAuthContext from "../../context/auth-contex";
 
 function ServiceDetails() {
@@ -38,6 +39,7 @@ function ServiceDetails() {
         </Section>
         <Section>
           <Reviews />
+          <ReviewForm />
         </Section>
       </Main>
     );
