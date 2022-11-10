@@ -11,3 +11,4 @@ This is a photographer website. The website is still in under developement. You 
 - Login Error handled
 - JWT implemented
 - Has a working server side
+- Has NoSQL database (MongoDB)
