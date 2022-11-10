@@ -14,6 +14,9 @@ export const GlobaStyles = createGlobalStyle`
         outline:3px solid ${(p) => p.theme.palette.tertiary.container.bg};
         outline-offset: 3px;
     }
+    :root{
+        color-scheme: dark;
+    }
     html{
         scroll-behavior: smooth;
     }

@@ -2,8 +2,7 @@ import * as yup from "yup";
 
 const REQUIRED = "Required!";
 
-const URL_REGEX =
-  /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
+const URL_REGEX = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png|svg)/g;
 
 export const regFormSchema = yup.object().shape({
   full_name: yup.string().min(3).required(REQUIRED),

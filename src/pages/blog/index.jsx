@@ -10,17 +10,10 @@ import {
   Section,
   Title,
 } from "./styles";
+import { shortText } from "../../utils/short-text";
 
 function Blog() {
   const [articles, setArticles] = useState(null);
-
-  function shortText(text) {
-    if (typeof text === "string") {
-      return text.slice(0, 100).concat("...");
-      // if (text.length > 100) return text.slice(0, 100).join("...");
-      // else return text;
-    } else return null;
-  }
 
   // side effects
   useEffect(() => {

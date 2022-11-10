@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { Container, Icon, Item, Label } from "./styles";
 import {
   MdOutlineDashboardCustomize as DashIcon,
@@ -7,11 +7,25 @@ import {
 } from "react-icons/md";
 import { useAuthContext } from "../../../context/auth-contex";
 
-function UserMenu() {
+function UserMenu({ setOpenUserMenu }) {
   const { logout } = useAuthContext();
+  const containerRef = useRef();
+
+  useEffect(() => {
+    function handleClick(e) {
+      if (!containerRef.current.contains(e.target)) {
+        // setOpenUserMenu((prev) => !prev);
+      }
+    }
+    window.addEventListener("click", handleClick);
+
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
 
   return (
-    <Container>
+    <Container ref={containerRef}>
       <Item>
         <Icon>
           <DashIcon />

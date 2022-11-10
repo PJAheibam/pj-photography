@@ -18,6 +18,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { ref, width } = useComponentSize();
+
   function toggleMenu() {
     setOpen((prev) => !prev);
   }
@@ -48,7 +49,7 @@ function Navbar() {
               onClick={() => setOpenUserMenu((prev) => !prev)}
             >
               <UserIcon />
-              {openUserMenu && <UserMenu />}
+              {openUserMenu && <UserMenu setOpenUserMenu={setOpenUserMenu} />}
             </IconButton>
           )}
           {width < 780 && (

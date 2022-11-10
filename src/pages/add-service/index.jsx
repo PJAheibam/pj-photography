@@ -32,30 +32,44 @@ function AddService() {
     initialValues: {
       name: "",
       sub_heading: "",
-      photo_url: "",
+      image_url: "",
       desc: "",
     },
     onSubmit,
     validationSchema: serviceSchema,
   });
 
-  function onSubmit(values, actions) {
-    setSuccess(true);
+  async function onSubmit(values, actions) {
+    try {
+      const res = await fetch(`${process.env.REACT_APP_SERVER_URL}/services`, {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+      if (res.status === 200) setSuccess(true);
+
+      const data = await res.json();
+      console.info(data);
+    } catch (err) {
+      console.error(err);
+    }
   }
 
-  // if (isSubmitting)
-  //   return (
-  //     <Main
-  //       style={{
-  //         display: "flex",
-  //         justifyContent: "center",
-  //         alignItems: "center",
-  //       }}
-  //     >
-  //       <ReactLoading type="spinningBubbles" />
-  //       <Loading>Submitting...</Loading>
-  //     </Main>
-  //   );
+  if (isSubmitting)
+    return (
+      <Main
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <ReactLoading type="spinningBubbles" />
+        <Loading>Submitting...</Loading>
+      </Main>
+    );
   return (
     <Main>
       {success && <Success setSuccess={setSuccess} handleReset={handleReset} />}
@@ -78,15 +92,15 @@ function AddService() {
         <Block>
           <Label>Photo URL</Label>
           <TextField
-            name="photo_url"
+            name="image_url"
             placeholder="What type of service?"
-            value={values.photo_url}
+            value={values.image_url}
             onChange={handleChange}
             onBlur={handleBlur}
-            error={errors.photo_url && touched.photo_url ? "true" : undefined}
+            error={errors.image_url && touched.image_url ? "true" : undefined}
           />
-          {errors.photo_url && touched.photo_url && (
-            <ErrorText> {errors.photo_url} </ErrorText>
+          {errors.image_url && touched.image_url && (
+            <ErrorText> {errors.image_url} </ErrorText>
           )}
         </Block>
         <Block>
