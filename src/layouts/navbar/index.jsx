@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../components/logo";
 import NavMenu from "./nav-menu";
 import {
@@ -30,6 +30,10 @@ function Navbar() {
   function toggleMenu() {
     setOpen((prev) => !prev);
   }
+
+  useEffect(() => {
+    if (width >= 600) setOpen(false);
+  }, [width]);
 
   return (
     <>
