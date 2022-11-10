@@ -5,8 +5,6 @@ import { Card, CardHeader, Name, HeaderContent, Text, Icon } from "./styles";
 import user from "../../../assets/icons/user.png";
 
 function Reviews({ reviews }) {
-  console.log(reviews);
-
   const params = {
     slidesPerView: "auto",
     spaceBetween: 30,

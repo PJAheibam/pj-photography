@@ -37,7 +37,7 @@ export function useAuthObserver(setLoading, setUser) {
         setLoading(false);
       } else setUser(null);
     });
-
+    setLoading(false);
     return () => unsubscribe();
   }, []);
   return null;

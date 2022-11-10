@@ -86,6 +86,9 @@ function ReviewForm({ id, reviews = [], myReview }) {
       <Block readonly={readonly}>
         <Label>Describe Your Experience</Label>
         <TextField
+          style={{
+            fontFamily: "Poppins",
+          }}
           readonly={readonly}
           name="text"
           type="text"

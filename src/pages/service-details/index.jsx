@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Main } from "../../components/containers";
 import { Heading, Section, Header, Text } from "./styles";
 import PrimaryBtn from "../../components/buttons/primary-button";
@@ -40,11 +40,28 @@ function ServiceDetails() {
           <PrimaryBtn>Book now</PrimaryBtn>
         </Section>
         <Section>
-          <Reviews reviews={service?.reviews} />
+          <Reviews
+            reviews={service?.reviews.filter((rv) => rv?.uid !== user?.uid)}
+          />
+          {!user && (
+            <SecondaryBtn
+              style={{ width: "fit-content", marginTop: "1rem" }}
+              as={Link}
+              to="/login"
+            >
+              Give Review
+            </SecondaryBtn>
+          )}
         </Section>
-        <Section>
-          <ReviewForm id={id} myReview={myReview} reviews={service?.reviews} />
-        </Section>
+        {user && user?.uid && (
+          <Section>
+            <ReviewForm
+              id={id}
+              myReview={myReview}
+              reviews={service?.reviews}
+            />
+          </Section>
+        )}
       </Main>
     );
 
