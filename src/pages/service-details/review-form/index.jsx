@@ -18,8 +18,6 @@ function ReviewForm({ id, reviews = [], myReview }) {
   const { user } = useAuthContext();
   const [rating, setRating] = useState(0);
   const [readonly, setReadonly] = useState(false);
-  console.info(readonly);
-  console.info("form", myReview);
 
   const {
     values,
@@ -53,18 +51,19 @@ function ReviewForm({ id, reviews = [], myReview }) {
       rating,
     };
 
-    // fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
-    //   method: "PATCH",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify([data, ...reviews]),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     if (data.acknowledged) setReadonly(true);
-    //     console.log(data);
-    //   });
+    const rest = reviews?.filter((item) => item?.uid !== user?.uid);
+    fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify([data, ...rest]),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.acknowledged) setReadonly(true);
+        console.log(data);
+      });
   }
 
   useEffect(() => {
@@ -79,7 +78,7 @@ function ReviewForm({ id, reviews = [], myReview }) {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <Heading>Rate this service</Heading>
+      <Heading>{myReview ? "Your review" : "Rate this service"}</Heading>
       <div style={{ width: "fit-content" }}>
         <Rating readOnly={readonly} value={rating} setValue={setRating} />
         {error && <ErrorText>Required!</ErrorText>}

@@ -20,7 +20,9 @@ export const Header = styled(Sec)`
 
 export const Heading = styled.h1`
   font-size: clamp(1.25rem, 6vw, 1.75rem);
-  margin-bottom: 0.5;
+  margin-bottom: 0.5rem;
 `;
 
-export const Text = styled.p``;
+export const Text = styled.p`
+  margin-bottom: 2rem;
+`;

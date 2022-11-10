@@ -40,7 +40,9 @@ function ServiceDetails() {
           <PrimaryBtn>Book now</PrimaryBtn>
         </Section>
         <Section>
-          <Reviews />
+          <Reviews reviews={service?.reviews} />
+        </Section>
+        <Section>
           <ReviewForm id={id} myReview={myReview} reviews={service?.reviews} />
         </Section>
       </Main>
