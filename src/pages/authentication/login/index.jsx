@@ -18,6 +18,7 @@ import { useFormik } from "formik";
 import { loginFormSchema } from "../../../schemas/login-form";
 import { useAuthContext } from "../../../context/auth-contex";
 import { useLocation, useNavigate } from "react-router-dom";
+import { setJwtToken } from "../../../utils/set-jwt-token";
 
 function LoginPage({ style }) {
   const location = useLocation();
@@ -25,7 +26,7 @@ function LoginPage({ style }) {
   const from = location.state?.from?.pathname || "/";
   const theme = useTheme();
   const [error, setError] = useState(null);
-  const { login, setLoading } = useAuthContext();
+  const { login, setLoading, logout } = useAuthContext();
   const buttonStyles = {
     width: "fit-content",
     marginInline: "auto",
@@ -48,7 +49,10 @@ function LoginPage({ style }) {
       setLoading(true);
       const res = await login(values.email, values.password);
       console.log(res);
-      if (res?.user && res?.user?.uid) navigate(from, { replace: true });
+      if (res?.user && res?.user?.uid) {
+        navigate(from, { replace: true });
+        setJwtToken(res?.user, logout);
+      }
       actions.resetForm();
     } catch (err) {
       switch (err.code) {

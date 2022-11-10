@@ -13,7 +13,8 @@ export function setJwtToken(user, logout, callback = () => {}) {
     })
     .then((data) => {
       console.info(data);
-      localStorage.setItem("access-token", data);
+      localStorage.setItem("access-token", data.token);
       callback();
-    });
+    })
+    .catch((err) => console.error(err));
 }
