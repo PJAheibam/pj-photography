@@ -9,6 +9,7 @@ import { useAuthContext } from "../../../context/auth-contex";
 
 function UserMenu({ setOpenUserMenu }) {
   const { logout } = useAuthContext();
+  const { user } = useAuthContext();
   const containerRef = useRef();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ function UserMenu({ setOpenUserMenu }) {
 
   return (
     <Container ref={containerRef}>
+      {user && user?.uid && <Item>{user?.displayName.split(" ")[0]}</Item>}
       <Item>
         <Icon>
           <DashIcon />

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   position: absolute;
-  bottom: -270%;
+  top: 105%;
   right: 0;
   overflow: hidden;
   border-radius: 0.25rem;

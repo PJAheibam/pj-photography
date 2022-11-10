@@ -45,3 +45,12 @@ export const IconButton = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const UserImg = styled.img`
+  height: 40px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  object-fit: cover;
+  object-position: center;
+`;

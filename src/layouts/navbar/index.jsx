@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import Logo from "../../components/logo";
 import NavMenu from "./nav-menu";
-import { AppBar, Buttons, ToggleButton, ToolBar, IconButton } from "./styles";
+import {
+  AppBar,
+  Buttons,
+  ToggleButton,
+  ToolBar,
+  IconButton,
+  UserImg,
+} from "./styles";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import { HiOutlineMenuAlt1 as MenuIcon } from "react-icons/hi";
@@ -15,6 +22,7 @@ import UserMenu from "./user-menu";
 
 function Navbar() {
   const { user, loading } = useAuthContext();
+  console.info(user);
   const [open, setOpen] = useState(false);
   const [openUserMenu, setOpenUserMenu] = useState(false);
   const { ref, width } = useComponentSize();
@@ -48,7 +56,11 @@ function Navbar() {
               role="button"
               onClick={() => setOpenUserMenu((prev) => !prev)}
             >
-              <UserIcon />
+              {user?.photoURL ? (
+                <UserImg src={user?.photoURL} alt="User Icon" />
+              ) : (
+                <UserIcon />
+              )}
               {openUserMenu && <UserMenu setOpenUserMenu={setOpenUserMenu} />}
             </IconButton>
           )}
