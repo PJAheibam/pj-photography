@@ -36,7 +36,6 @@ function ReviewForm({ id, reviews = [], myReview }) {
   });
 
   function onSubmit(values, actions) {
-    console.info("submit clicked");
     if (!rating) {
       setError("Required");
       return;
@@ -51,13 +50,12 @@ function ReviewForm({ id, reviews = [], myReview }) {
       rating,
     };
 
-    const rest = reviews?.filter((item) => item?.uid !== user?.uid);
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`, {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}?method=patch`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify([data, ...rest]),
+      body: JSON.stringify(data),
     })
       .then((res) => res.json())
       .then((data) => {

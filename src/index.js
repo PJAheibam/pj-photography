@@ -4,6 +4,7 @@ import App from "./App";
 import "swiper/css";
 import "swiper/css/navigation";
 import "react-photo-view/dist/react-photo-view.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

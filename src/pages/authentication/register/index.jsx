@@ -19,12 +19,13 @@ import { useAuthContext } from "../../../context/auth-contex";
 import { updateProfile } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import useTitleChanger from "../../../hooks/use-title";
+import Loading from "../../loading";
 
 function RegisterPage() {
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-  const { register, setLoading } = useAuthContext();
+  const { loading, register, setLoading } = useAuthContext();
   const btnStyles = {
     marginInline: "auto",
   };
@@ -52,6 +53,8 @@ function RegisterPage() {
     }
   }
   useTitleChanger("Register");
+
+  if (loading) return <Loading />;
   return (
     <Main>
       <Container>

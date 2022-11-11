@@ -20,6 +20,7 @@ import { useAuthContext } from "../../../context/auth-contex";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setJwtToken } from "../../../utils/set-jwt-token";
 import useTitleChanger from "../../../hooks/use-title";
+import Loading from "../../loading";
 
 function LoginPage({ style }) {
   const location = useLocation();
@@ -27,7 +28,7 @@ function LoginPage({ style }) {
   const from = location.state?.from?.pathname || "/";
   const theme = useTheme();
   const [error, setError] = useState(null);
-  const { login, setLoading, logout } = useAuthContext();
+  const { login, loading, setLoading, logout } = useAuthContext();
   const buttonStyles = {
     width: "fit-content",
     marginInline: "auto",
@@ -72,6 +73,9 @@ function LoginPage({ style }) {
   }
 
   useTitleChanger("Login");
+
+  if (loading) return <Loading />;
+
   return (
     <Main>
       <Container>

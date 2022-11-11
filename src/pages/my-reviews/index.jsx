@@ -19,14 +19,54 @@ import { Link } from "react-router-dom";
 import Loading from "../loading";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import useTitleChanger from "../../hooks/use-title";
+import ReactLoading from "react-loading";
+import { ToastContainer, toast } from "react-toastify";
 
 function MyReviews() {
   const [myReviews, setMyReviews] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuthContext();
   const [openModal, setOpenModal] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
+  async function handleDelete(service_id) {
+    const res = window.confirm("Are you sure you want to delete");
+    toast.warn("Wow so easy!", {
+      closeButton: true,
+    });
+    // setDeleting(true);
+
+    if (res) {
+      // front end
+      // console.log(service_id);
+      const rest = myReviews.filter((r) => r.service_id !== service_id);
+      setMyReviews(rest);
+
+      // back-end
+      try {
+        const response = await fetch(
+          `${process.env.REACT_APP_SERVER_URL}/services/${service_id}?method=remove`,
+          {
+            method: "PATCH",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(user),
+          }
+        );
+        const data = await response.json();
+        setDeleting(false);
+        console.log(data);
+        toast.success("Delete Successfull");
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+
+  // side effects
   useTitleChanger("My Reviews");
+
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
       .then((res) => res.json())
@@ -53,6 +93,7 @@ function MyReviews() {
         setLoading(false);
       });
   }, []);
+
   if (loading) return <Loading />;
   if (JSON.stringify(myReviews) === "[]")
     return (
@@ -70,6 +111,16 @@ function MyReviews() {
   if (myReviews)
     return (
       <Main>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={2000}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          theme="dark"
+        />
         <Section>
           {myReviews.map((review, i) => (
             <Item key={i}>
@@ -88,14 +139,15 @@ function MyReviews() {
                   Edit
                 </SecondaryBtn>
                 <SecondaryBtn
-                  onClick={() => setOpenModal(true)}
+                  disabled={deleting ? true : false}
+                  onClick={() => handleDelete(review.service_id)}
                   style={{ width: "fit-content" }}
                   // as={Link}
                   // to={`/services/${review.service_id}`}
                 >
                   Delete
                 </SecondaryBtn>
-                <HyperModal
+                {/* <HyperModal
                   isOpen={openModal}
                   classes="my-modal"
                   requestClose={() => setOpenModal(false)}
@@ -108,9 +160,13 @@ function MyReviews() {
                       justifyContent: "center",
                     }}
                   >
+                    {loading && <ReactLoading type="spinningBubbles" />}
                     <Title>Are sure you want to delete this review?</Title>
                     <Buttons style={{ marginTop: "2rem" }}>
-                      <PrimaryBtn style={{ background: "hsla(0, 70%, 70%)" }}>
+                      <PrimaryBtn
+                        style={{ background: "hsla(0, 70%, 70%)" }}
+                        onClick={() => handleDelete(review.service_id)}
+                      >
                         Yes
                       </PrimaryBtn>
                       <SecondaryBtn onClick={() => setOpenModal(false)}>
@@ -118,7 +174,7 @@ function MyReviews() {
                       </SecondaryBtn>
                     </Buttons>
                   </Content>
-                </HyperModal>
+                </HyperModal> */}
               </Buttons>
             </Item>
           ))}

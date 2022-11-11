@@ -43,7 +43,18 @@ function ServiceDetails() {
           <Text>{service.desc}</Text>
           <PrimaryBtn>Book now</PrimaryBtn>
         </Section>
+        {/* others review */}
+
         <Section>
+          <Heading>Others review</Heading>
+          {JSON.stringify(
+            service?.reviews?.filter((rv) => rv?.uid !== user?.uid)
+          ) === "[]" && (
+            <Text>
+              {myReview ? "No reviews yet, except you" : "No reviews yet"}
+            </Text>
+          )}
+
           <Reviews
             reviews={service?.reviews?.filter((rv) => rv?.uid !== user?.uid)}
           />
@@ -59,6 +70,8 @@ function ServiceDetails() {
             </SecondaryBtn>
           )}
         </Section>
+
+        {/* user review */}
         {user && user?.uid && (
           <Section>
             <ReviewForm
