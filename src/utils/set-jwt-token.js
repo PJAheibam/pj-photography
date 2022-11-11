@@ -1,4 +1,4 @@
-export function setJwtToken(user, logout, callback = () => {}) {
+export function setJwtToken(user, callback = () => {}) {
   fetch(`${process.env.REACT_APP_SERVER_URL}/jwt`, {
     method: "POST",
     headers: {
@@ -6,11 +6,7 @@ export function setJwtToken(user, logout, callback = () => {}) {
     },
     body: JSON.stringify({ uid: user?.uid }),
   })
-    .then((res) => {
-      if (res.status === 401 || res.status === 403) logout();
-
-      return res.json();
-    })
+    .then((res) => res.json())
     .then((data) => {
       console.info(data);
       localStorage.setItem("access-token", data.token);

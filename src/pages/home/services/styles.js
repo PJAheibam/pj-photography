@@ -21,6 +21,7 @@ export const SubHeading = styled.p`
 
 export const Items = styled(Section)`
   display: grid;
+  padding-inline: 0;
   grid-template-columns: 1fr;
   grid-auto-rows: 1fr;
   gap: 1rem;

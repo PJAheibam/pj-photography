@@ -20,6 +20,7 @@ import { updateProfile } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
 import useTitleChanger from "../../../hooks/use-title";
 import Loading from "../../loading";
+import { setJwtToken } from "../../../utils/set-jwt-token";
 
 function RegisterPage() {
   const location = useLocation();
@@ -41,6 +42,7 @@ function RegisterPage() {
     try {
       const res = await register(values.email, values.password);
       // useJwtToken()
+      setJwtToken(res.user);
       await updateProfile(res.user, {
         photoURL: values.image_url,
         displayName: values.full_name,

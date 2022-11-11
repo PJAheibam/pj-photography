@@ -7,6 +7,7 @@ import { Text } from "../styles";
 import { GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 import { useAuthContext } from "../../../context/auth-contex";
 import { useNavigate } from "react-router-dom";
+import { setJwtToken } from "../../../utils/set-jwt-token";
 
 function Socials({ parent, location }) {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ function Socials({ parent, location }) {
     setLoading(true);
     loginWithPopup(provider)
       .then((res) => {
-        console.info(res);
+        setJwtToken(res?.user);
         navigate(from, { replace: true });
       })
       .catch((err) => {

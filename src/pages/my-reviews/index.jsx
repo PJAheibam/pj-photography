@@ -102,8 +102,8 @@ function MyReviews() {
         return res.json();
       })
       .then((data) => {
-        console.log("data", data);
-        setMyReviews(data?.reviews);
+        // console.log("data", data);
+        setMyReviews(data.reviews);
         setLoading(false);
       })
       .catch((err) => {
@@ -128,7 +128,37 @@ function MyReviews() {
 
   if (myReviews)
     return (
-      <Main>
+      <>
+        <Main>
+          <Section>
+            {myReviews.map((review, i) => (
+              <Item key={i}>
+                <ItemHeader>
+                  <HeaderImage src={review.image_url} alt="thumbnail" />
+                </ItemHeader>
+                <Title>{review.service_name}</Title>
+                <Rating value={review.rating} readOnly />
+                <Desc>{review.text}</Desc>
+                <Buttons>
+                  <SecondaryBtn
+                    style={{ width: "fit-content" }}
+                    as={Link}
+                    to={`/services/${review.service_id}`}
+                  >
+                    Edit
+                  </SecondaryBtn>
+                  <SecondaryBtn
+                    disabled={deleting ? true : false}
+                    onClick={() => handleDelete(review.service_id)}
+                    style={{ width: "fit-content" }}
+                  >
+                    Delete
+                  </SecondaryBtn>
+                </Buttons>
+              </Item>
+            ))}
+          </Section>
+        </Main>
         <ToastContainer
           position="bottom-center"
           autoClose={2000}
@@ -139,35 +169,7 @@ function MyReviews() {
           draggable
           theme="dark"
         />
-        <Section>
-          {myReviews.map((review, i) => (
-            <Item key={i}>
-              <ItemHeader>
-                <HeaderImage src={review.image_url} alt="thumbnail" />
-              </ItemHeader>
-              <Title>{review.service_name}</Title>
-              <Rating value={review.rating} readOnly />
-              <Desc>{review.text}</Desc>
-              <Buttons>
-                <SecondaryBtn
-                  style={{ width: "fit-content" }}
-                  as={Link}
-                  to={`/services/${review.service_id}`}
-                >
-                  Edit
-                </SecondaryBtn>
-                <SecondaryBtn
-                  disabled={deleting ? true : false}
-                  onClick={() => handleDelete(review.service_id)}
-                  style={{ width: "fit-content" }}
-                >
-                  Delete
-                </SecondaryBtn>
-              </Buttons>
-            </Item>
-          ))}
-        </Section>
-      </Main>
+      </>
     );
 }
 

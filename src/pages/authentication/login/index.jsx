@@ -53,7 +53,7 @@ function LoginPage({ style }) {
       console.log(res);
       if (res?.user && res?.user?.uid) {
         navigate(from, { replace: true });
-        setJwtToken(res?.user, logout);
+        setJwtToken(res?.user);
       }
       actions.resetForm();
     } catch (err) {
