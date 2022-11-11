@@ -18,6 +18,7 @@ import { regFormSchema } from "../../../schemas/registration-form";
 import { useAuthContext } from "../../../context/auth-contex";
 import { updateProfile } from "firebase/auth";
 import { useNavigate, useLocation } from "react-router-dom";
+import useTitleChanger from "../../../hooks/use-title";
 
 function RegisterPage() {
   const location = useLocation();
@@ -50,7 +51,7 @@ function RegisterPage() {
       console.log(err);
     }
   }
-
+  useTitleChanger("Register");
   return (
     <Main>
       <Container>

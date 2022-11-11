@@ -16,6 +16,7 @@ import PrimaryBtn from "../../components/buttons/primary-button";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import { Link } from "react-router-dom";
 import Loading from "../loading";
+import useTitleChanger from "../../hooks/use-title";
 
 function Services() {
   const [services, setServices] = useState(null);
@@ -34,6 +35,7 @@ function Services() {
         setLoading(false);
       });
   }, []);
+  useTitleChanger("Services");
 
   if (loading) return <Loading />;
   return (

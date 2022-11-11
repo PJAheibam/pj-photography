@@ -13,6 +13,7 @@ import { useFormik } from "formik";
 import { serviceSchema } from "../../schemas/service-form";
 import ReactLoading from "react-loading";
 import Success from "./success";
+import useTitleChanger from "../../hooks/use-title";
 
 function AddService() {
   const btnStyle = {
@@ -57,6 +58,8 @@ function AddService() {
     }
   }
 
+  useTitleChanger("Add Service");
+
   if (isSubmitting)
     return (
       <Main
@@ -70,6 +73,7 @@ function AddService() {
         <Loading>Submitting...</Loading>
       </Main>
     );
+
   return (
     <Main>
       {success && <Success setSuccess={setSuccess} handleReset={handleReset} />}

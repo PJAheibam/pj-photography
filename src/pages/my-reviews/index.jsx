@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Main } from "../../components/containers";
 import { useAuthContext } from "../../context/auth-contex";
+import HyperModal from "react-hyper-modal";
 import {
   Buttons,
+  Content,
   Desc,
   HeaderImage,
   Item,
@@ -15,12 +17,16 @@ import SecondaryBtn from "../../components/buttons/secondary-button";
 import Rating from "../../components/rating";
 import { Link } from "react-router-dom";
 import Loading from "../loading";
+import PrimaryBtn from "../../components/buttons/primary-button";
+import useTitleChanger from "../../hooks/use-title";
 
 function MyReviews() {
   const [myReviews, setMyReviews] = useState(null);
   const [loading, setLoading] = useState(true);
   const { user } = useAuthContext();
+  const [openModal, setOpenModal] = useState(false);
 
+  useTitleChanger("My Reviews");
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
       .then((res) => res.json())
@@ -82,12 +88,37 @@ function MyReviews() {
                   Edit
                 </SecondaryBtn>
                 <SecondaryBtn
+                  onClick={() => setOpenModal(true)}
                   style={{ width: "fit-content" }}
                   // as={Link}
                   // to={`/services/${review.service_id}`}
                 >
                   Delete
                 </SecondaryBtn>
+                <HyperModal
+                  isOpen={openModal}
+                  classes="my-modal"
+                  requestClose={() => setOpenModal(false)}
+                >
+                  <Content
+                    style={{
+                      // paddingTop: "3rem",
+                      height: "100%",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Title>Are sure you want to delete this review?</Title>
+                    <Buttons style={{ marginTop: "2rem" }}>
+                      <PrimaryBtn style={{ background: "hsla(0, 70%, 70%)" }}>
+                        Yes
+                      </PrimaryBtn>
+                      <SecondaryBtn onClick={() => setOpenModal(false)}>
+                        No
+                      </SecondaryBtn>
+                    </Buttons>
+                  </Content>
+                </HyperModal>
               </Buttons>
             </Item>
           ))}

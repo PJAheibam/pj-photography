@@ -19,6 +19,7 @@ import { loginFormSchema } from "../../../schemas/login-form";
 import { useAuthContext } from "../../../context/auth-contex";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setJwtToken } from "../../../utils/set-jwt-token";
+import useTitleChanger from "../../../hooks/use-title";
 
 function LoginPage({ style }) {
   const location = useLocation();
@@ -70,6 +71,7 @@ function LoginPage({ style }) {
     }
   }
 
+  useTitleChanger("Login");
   return (
     <Main>
       <Container>

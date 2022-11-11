@@ -49,6 +49,13 @@ export const GlobaStyles = createGlobalStyle`
         box-shadow: ${(p) =>
           `0 0 0 30px ${p.theme.palette.background.paper[3]} inset !important`};
     }
+    .hm_hyperCloseIcon{
+        background-image: url(https://img.icons8.com/fluency/512/cancel.png);
+    }
+    .hm_hyperModalWrapper .hm_hyperModalContentWrapper{
+        padding: 1rem;
+        background-color: ${(p) => p.theme.palette.background.paper[3]}
+    }
     /* ${swiperStyle} */
 
 `;

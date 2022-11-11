@@ -12,6 +12,7 @@ import {
 } from "./styles";
 import { shortText } from "../../utils/short-text";
 import Loading from "../loading";
+import useTitleChanger from "../../hooks/use-title";
 
 function Blog() {
   const [articles, setArticles] = useState(null);
@@ -30,6 +31,8 @@ function Blog() {
         setLoading(false);
       });
   }, []);
+
+  useTitleChanger("Blog");
 
   if (loading) return <Loading />;
   return (
