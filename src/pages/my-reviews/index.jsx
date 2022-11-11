@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Main } from "../../components/containers";
 import { useAuthContext } from "../../context/auth-contex";
 import {
+  Buttons,
   Desc,
   HeaderImage,
   Item,
@@ -72,13 +73,22 @@ function MyReviews() {
               <Title>{review.service_name}</Title>
               <Rating value={review.rating} readOnly />
               <Desc>{review.text}</Desc>
-              <SecondaryBtn
-                style={{ width: "fit-content" }}
-                as={Link}
-                to={`/services/${review.service_id}`}
-              >
-                Edit
-              </SecondaryBtn>
+              <Buttons>
+                <SecondaryBtn
+                  style={{ width: "fit-content" }}
+                  as={Link}
+                  to={`/services/${review.service_id}`}
+                >
+                  Edit
+                </SecondaryBtn>
+                <SecondaryBtn
+                  style={{ width: "fit-content" }}
+                  // as={Link}
+                  // to={`/services/${review.service_id}`}
+                >
+                  Delete
+                </SecondaryBtn>
+              </Buttons>
             </Item>
           ))}
         </Section>

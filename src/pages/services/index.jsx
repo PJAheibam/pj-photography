@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Main } from "../../components/containers";
 import {
   Buttons,
@@ -38,23 +39,30 @@ function Services() {
   return (
     <Main>
       <Items>
-        {services &&
-          services.map((service) => (
-            <Item key={service._id}>
-              <ItemHeader>
-                <HeaderImage src={service.image_url} alt="Service Thumbnail" />
-              </ItemHeader>
-              <Content>
-                <Title>{service.name}</Title>
-                <Desc>{shortText(service.desc)}</Desc>
-              </Content>
-              <Buttons>
-                <PrimaryBtn as={Link} to={`/services/${service._id}`}>
-                  Details
-                </PrimaryBtn>
-              </Buttons>
-            </Item>
-          ))}
+        <PhotoProvider>
+          {services &&
+            services.map((service) => (
+              <Item key={service._id}>
+                <ItemHeader>
+                  <PhotoView src={service.image_url}>
+                    <HeaderImage
+                      src={service.image_url}
+                      alt="Service Thumbnail"
+                    />
+                  </PhotoView>
+                </ItemHeader>
+                <Content>
+                  <Title>{service.name}</Title>
+                  <Desc>{shortText(service.desc)}</Desc>
+                </Content>
+                <Buttons>
+                  <PrimaryBtn as={Link} to={`/services/${service._id}`}>
+                    Details
+                  </PrimaryBtn>
+                </Buttons>
+              </Item>
+            ))}
+        </PhotoProvider>
       </Items>
     </Main>
   );
