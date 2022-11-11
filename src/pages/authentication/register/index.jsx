@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Main,
   Container,
@@ -23,6 +23,7 @@ import Loading from "../../loading";
 import { setJwtToken } from "../../../utils/set-jwt-token";
 
 function RegisterPage() {
+  const [error, setError] = useState(null);
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
@@ -48,10 +49,12 @@ function RegisterPage() {
         photoURL: values.image_url,
         displayName: values.full_name,
       });
-      setLoading(false);
       if (res?.user && res?.user?.uid) navigate(from, { replace: true });
+      setLoading(false);
       // actions.formReset();
     } catch (err) {
+      if (err.code === "auth/email-already-in-use")
+        setError("Email is already in use!");
       setLoading(false);
       console.log(err);
     }
@@ -65,6 +68,19 @@ function RegisterPage() {
       <Container>
         <AnimationContainer onSubmit={handleSubmit}>
           <Heading>Register</Heading>
+          {error && (
+            <ErrorText
+              style={{
+                textAlign: "center",
+                padding: "1em 1em",
+                fonSize: "1rem",
+                border: "2px solid rgba(255,255,255,0.05)",
+                borderRadius: "0.35rem",
+              }}
+            >
+              {error}
+            </ErrorText>
+          )}
           <Block>
             <Label>Full Name</Label>
             <TextField

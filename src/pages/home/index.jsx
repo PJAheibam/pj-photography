@@ -4,6 +4,7 @@ import useTitleChanger from "../../hooks/use-title";
 import ContactSection from "./contact";
 import HeroSection from "./hero";
 import PortfolioSection from "./portfolio";
+import Process from "./process";
 import ServicesSection from "./services";
 
 function Home() {
@@ -14,6 +15,7 @@ function Home() {
       <ServicesSection />
       <PortfolioSection />
       <ContactSection />
+      <Process />
     </Main>
   );
 }
