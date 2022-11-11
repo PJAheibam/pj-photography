@@ -6,7 +6,7 @@ function Footer() {
   return (
     <Container>
       <Logo />
-      <CopyRight>Copyright &copy; 2022 PJ Photography</CopyRight>
+      <CopyRight>Copyright &copy; 2022 PJ Photography, Picturesque</CopyRight>
     </Container>
   );
 }

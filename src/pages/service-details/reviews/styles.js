@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
-  width: 300px;
+  max-width: 400px !important;
   display: flex;
   flex-direction: column;
   padding: 1rem;
@@ -28,6 +28,10 @@ export const Text = styled.p`
 
 export const Icon = styled.div`
   aspect-ratio: 1;
+  overflow: hidden;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
 `;
 
 export const Name = styled.h3``;

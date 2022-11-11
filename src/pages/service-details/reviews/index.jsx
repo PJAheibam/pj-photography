@@ -5,6 +5,7 @@ import { Card, CardHeader, Name, HeaderContent, Text, Icon } from "./styles";
 import user from "../../../assets/icons/user.png";
 
 function Reviews({ reviews }) {
+  // console.log(reviews);
   const params = {
     slidesPerView: "auto",
     spaceBetween: 30,
@@ -21,7 +22,7 @@ function Reviews({ reviews }) {
           <Card key={i}>
             <CardHeader>
               <Icon>
-                <img width={50} src={user} alt="avatar" />
+                <img width={50} src={review?.photoURL || user} alt="avatar" />
               </Icon>
               <HeaderContent>
                 <Name>{review?.name}</Name>

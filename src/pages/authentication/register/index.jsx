@@ -40,6 +40,7 @@ function RegisterPage() {
 
   async function onSubmit(values, actions) {
     try {
+      setLoading(true);
       const res = await register(values.email, values.password);
       // useJwtToken()
       setJwtToken(res.user);
@@ -47,6 +48,7 @@ function RegisterPage() {
         photoURL: values.image_url,
         displayName: values.full_name,
       });
+      setLoading(false);
       if (res?.user && res?.user?.uid) navigate(from, { replace: true });
       // actions.formReset();
     } catch (err) {
@@ -57,6 +59,7 @@ function RegisterPage() {
   useTitleChanger("Register");
 
   if (loading) return <Loading />;
+
   return (
     <Main>
       <Container>

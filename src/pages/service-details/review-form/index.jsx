@@ -44,6 +44,7 @@ function ReviewForm({ id, reviews = [], myReview }) {
 
     const data = {
       uid: user?.uid,
+      photoURL: user?.photoURL || "",
       name: user?.displayName,
       email: user?.email,
       text: values.text,
