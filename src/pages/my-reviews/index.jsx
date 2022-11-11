@@ -31,9 +31,6 @@ function MyReviews() {
 
   async function handleDelete(service_id) {
     const res = window.confirm("Are you sure you want to delete");
-    toast.warn("Wow so easy!", {
-      closeButton: true,
-    });
     // setDeleting(true);
 
     if (res) {

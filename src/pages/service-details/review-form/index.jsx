@@ -8,6 +8,7 @@ import { useAuthContext } from "../../../context/auth-contex";
 import Rating from "../../../components/rating";
 import SecondaryBtn from "../../../components/buttons/secondary-button";
 import PrimaryBtn from "../../../components/buttons/primary-button";
+import { toast, ToastContainer } from "react-toastify";
 
 const schema = yup.object().shape({
   text: yup.string().min(3).required("Required!"),
@@ -61,6 +62,7 @@ function ReviewForm({ id, reviews = [], myReview }) {
       .then((data) => {
         if (data.acknowledged) setReadonly(true);
         console.log(data);
+        toast.success("Review Added!");
       });
   }
 
@@ -76,6 +78,18 @@ function ReviewForm({ id, reviews = [], myReview }) {
 
   return (
     <Container onSubmit={handleSubmit}>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
       <Heading>{myReview ? "Your review" : "Rate this service"}</Heading>
       <div style={{ width: "fit-content" }}>
         <Rating readOnly={readonly} value={rating} setValue={setRating} />
