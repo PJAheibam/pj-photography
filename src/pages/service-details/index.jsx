@@ -18,7 +18,9 @@ function ServiceDetails() {
   const [service, setService] = useState(null);
   const [loading, setLoading] = useState(true);
   const myReview = service?.reviews?.find((data) => data?.uid === user?.uid);
-
+  function handleBook() {
+    alert("Function is not implemented yet!");
+  }
   useEffect(() => {
     window.scrollTo(0, 0);
     fetch(`${process.env.REACT_APP_SERVER_URL}/services/${id}`)
@@ -41,7 +43,7 @@ function ServiceDetails() {
         <Section>
           <Heading>{service.name}</Heading>
           <Text>{service.desc}</Text>
-          <PrimaryBtn>Book now</PrimaryBtn>
+          <PrimaryBtn onClick={handleBook}>Book now</PrimaryBtn>
         </Section>
         {/* others review */}
 
