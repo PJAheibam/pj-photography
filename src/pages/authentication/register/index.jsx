@@ -40,7 +40,7 @@ function RegisterPage() {
   async function onSubmit(values, actions) {
     try {
       const res = await register(values.email, values.password);
-
+      // useJwtToken()
       await updateProfile(res.user, {
         photoURL: values.image_url,
         displayName: values.full_name,

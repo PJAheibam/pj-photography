@@ -91,6 +91,16 @@ function MyReviews() {
       });
   }, []);
 
+  useEffect(() => {
+    fetch(`${process.env.REACT_APP_SERVER_URL}/reviews?uid=${user?.uid}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("access-token")}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
+
   if (loading) return <Loading />;
   if (JSON.stringify(myReviews) === "[]")
     return (
@@ -139,39 +149,9 @@ function MyReviews() {
                   disabled={deleting ? true : false}
                   onClick={() => handleDelete(review.service_id)}
                   style={{ width: "fit-content" }}
-                  // as={Link}
-                  // to={`/services/${review.service_id}`}
                 >
                   Delete
                 </SecondaryBtn>
-                {/* <HyperModal
-                  isOpen={openModal}
-                  classes="my-modal"
-                  requestClose={() => setOpenModal(false)}
-                >
-                  <Content
-                    style={{
-                      // paddingTop: "3rem",
-                      height: "100%",
-                      alignItems: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    {loading && <ReactLoading type="spinningBubbles" />}
-                    <Title>Are sure you want to delete this review?</Title>
-                    <Buttons style={{ marginTop: "2rem" }}>
-                      <PrimaryBtn
-                        style={{ background: "hsla(0, 70%, 70%)" }}
-                        onClick={() => handleDelete(review.service_id)}
-                      >
-                        Yes
-                      </PrimaryBtn>
-                      <SecondaryBtn onClick={() => setOpenModal(false)}>
-                        No
-                      </SecondaryBtn>
-                    </Buttons>
-                  </Content>
-                </HyperModal> */}
               </Buttons>
             </Item>
           ))}

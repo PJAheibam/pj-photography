@@ -4,7 +4,7 @@ export function setJwtToken(user, logout, callback = () => {}) {
     headers: {
       "content-type": "application/json",
     },
-    body: JSON.stringify(user),
+    body: JSON.stringify({ uid: user?.uid }),
   })
     .then((res) => {
       if (res.status === 401 || res.status === 403) logout();
