@@ -50,7 +50,6 @@ function AddService() {
         body: JSON.stringify({ ...values, reviews: [] }),
       });
       if (res.status === 200) setSuccess(true);
-
       const data = await res.json();
       console.info(data);
     } catch (err) {

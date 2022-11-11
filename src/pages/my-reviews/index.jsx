@@ -25,7 +25,7 @@ import { ToastContainer, toast } from "react-toastify";
 function MyReviews() {
   const [myReviews, setMyReviews] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { user } = useAuthContext();
+  const { user, logout } = useAuthContext();
   const [openModal, setOpenModal] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -97,16 +97,23 @@ function MyReviews() {
         authorization: `Bearer ${localStorage.getItem("access-token")}`,
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res.status === 401 || res.status === 403) logout();
+        return res.json();
+      })
       .then((data) => {
-        setMyReviews(data.reviews);
+        console.log("data", data);
+        setMyReviews(data?.reviews);
         setLoading(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) return <Loading />;
-  if (JSON.stringify(myReviews) === "[]")
+  if (JSON.stringify(myReviews) === "[]" || myReviews === undefined)
     return (
       <Main
         style={{
