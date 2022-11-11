@@ -47,7 +47,7 @@ function AddService() {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({ ...values, reviews: [] }),
       });
       if (res.status === 200) setSuccess(true);
 

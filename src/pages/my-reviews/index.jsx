@@ -64,32 +64,32 @@ function MyReviews() {
   // side effects
   useTitleChanger("My Reviews");
 
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
-      .then((res) => res.json())
-      .then((data) => {
-        if (typeof data === "object") {
-          const r = data?.map((item) => {
-            const found = item?.reviews?.find((rv) => rv?.uid === user?.uid);
-            if (found !== undefined) {
-              return {
-                ...found,
-                image_url: item?.image_url,
-                service_name: item?.name,
-                service_id: item?._id,
-              };
-            }
-            return found;
-          });
-          setMyReviews(r.filter((item) => item !== undefined));
-        }
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (typeof data === "object") {
+  //         const r = data?.map((item) => {
+  //           const found = item?.reviews?.find((rv) => rv?.uid === user?.uid);
+  //           if (found !== undefined) {
+  //             return {
+  //               ...found,
+  //               image_url: item?.image_url,
+  //               service_name: item?.name,
+  //               service_id: item?._id,
+  //             };
+  //           }
+  //           return found;
+  //         });
+  //         setMyReviews(r.filter((item) => item !== undefined));
+  //       }
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setLoading(false);
+  //     });
+  // }, []);
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/reviews?uid=${user?.uid}`, {
@@ -98,7 +98,11 @@ function MyReviews() {
       },
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        setMyReviews(data.reviews);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   if (loading) return <Loading />;
