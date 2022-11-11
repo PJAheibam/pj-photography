@@ -13,6 +13,7 @@ import {
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import Rating from "../../components/rating";
 import { Link } from "react-router-dom";
+import Loading from "../loading";
 
 function MyReviews() {
   const [myReviews, setMyReviews] = useState(null);
@@ -45,7 +46,7 @@ function MyReviews() {
         setLoading(false);
       });
   }, []);
-  if (loading) return null;
+  if (loading) return <Loading />;
   if (JSON.stringify(myReviews) === "[]")
     return (
       <Main

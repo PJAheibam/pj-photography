@@ -44,11 +44,11 @@ function UserMenu({ setOpenUserMenu }) {
         </Icon>
         <Label>Setting</Label>
       </Item>
-      <Item>
+      <Item onClick={logout}>
         <Icon>
           <MdLogout />
         </Icon>
-        <Label onClick={logout}>Logout</Label>
+        <Label>Logout</Label>
       </Item>
     </Container>
   );

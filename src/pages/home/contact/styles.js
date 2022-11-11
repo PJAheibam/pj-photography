@@ -11,6 +11,8 @@ export const Container = styled(Section)`
   @media ${device.sm} {
     gap: 3rem;
     flex-direction: row;
+  }
+  @media ${device.xl} {
     border-radius: 1rem;
   }
 `;

@@ -49,7 +49,6 @@ export const GlobaStyles = createGlobalStyle`
         box-shadow: ${(p) =>
           `0 0 0 30px ${p.theme.palette.background.paper[3]} inset !important`};
     }
-
-    ${swiperStyle}
+    /* ${swiperStyle} */
 
 `;

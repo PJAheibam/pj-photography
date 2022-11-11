@@ -14,6 +14,7 @@ import { shortText } from "../../utils/short-text";
 import PrimaryBtn from "../../components/buttons/primary-button";
 import SecondaryBtn from "../../components/buttons/secondary-button";
 import { Link } from "react-router-dom";
+import Loading from "../loading";
 
 function Services() {
   const [services, setServices] = useState(null);
@@ -33,6 +34,7 @@ function Services() {
       });
   }, []);
 
+  if (loading) return <Loading />;
   return (
     <Main>
       <Items>

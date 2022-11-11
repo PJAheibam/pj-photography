@@ -11,18 +11,27 @@ import {
   Title,
 } from "./styles";
 import { shortText } from "../../utils/short-text";
+import Loading from "../loading";
 
 function Blog() {
   const [articles, setArticles] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   // side effects
   useEffect(() => {
     fetch(`${process.env.REACT_APP_SERVER_URL}/articles`)
       .then((res) => res.json())
-      .then((data) => setArticles(data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        setArticles(data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
   }, []);
 
+  if (loading) return <Loading />;
   return (
     <Main>
       <Section>

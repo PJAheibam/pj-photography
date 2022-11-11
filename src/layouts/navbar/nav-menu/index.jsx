@@ -2,8 +2,10 @@ import React from "react";
 import { Item, Items } from "./styles";
 import { navLinks } from "../data";
 import { useAuthContext } from "../../../context/auth-contex";
+import { useWindowSize } from "react-use-size";
 
 function NavMenu({ direction = "horizontal", setOpen = () => {} }) {
+  const { width } = useWindowSize();
   const { user, loading } = useAuthContext();
   function handleClick() {
     setOpen((prev) => !prev);
@@ -31,6 +33,11 @@ function NavMenu({ direction = "horizontal", setOpen = () => {} }) {
           );
         }
       })}
+      {width < 500 && !user && !user?.uid && (
+        <Item to="/login" onClick={handleClick}>
+          Login
+        </Item>
+      )}
     </Items>
   );
 }

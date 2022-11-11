@@ -13,6 +13,7 @@ export const Header = styled(Sec)`
   background-repeat: no-repeat;
   background-size: cover;
   @media ${device.xl} {
+    width: 1280px;
     border-radius: 1rem;
     margin-top: 2rem;
   }

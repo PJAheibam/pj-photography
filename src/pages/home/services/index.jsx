@@ -16,6 +16,7 @@ import { shortText } from "../../../utils/short-text";
 import PrimaryBtn from "../../../components/buttons/primary-button";
 import { Link } from "react-router-dom";
 import SecondaryBtn from "../../../components/buttons/secondary-button";
+import Loading from "../../loading";
 
 function ServicesSection() {
   const [services, setServices] = useState(null);
@@ -23,7 +24,7 @@ function ServicesSection() {
 
   // side effects
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services?limit=6`)
+    fetch(`${process.env.REACT_APP_SERVER_URL}/services?limit=3`)
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
@@ -34,6 +35,7 @@ function ServicesSection() {
         setLoading(false);
       });
   }, []);
+  if (loading) return <Loading />;
   return (
     <Container>
       <Heading>Feature Services</Heading>
