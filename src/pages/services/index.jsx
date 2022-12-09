@@ -30,8 +30,7 @@ function Services() {
         setServices(data);
         setLoading(false);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setLoading(false);
       });
   }, []);
