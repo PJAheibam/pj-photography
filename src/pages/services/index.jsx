@@ -17,30 +17,21 @@ import SecondaryBtn from "../../components/buttons/secondary-button";
 import { Link } from "react-router-dom";
 import Loading from "../loading";
 import useTitleChanger from "../../hooks/use-title";
+import useServices from "../../hooks/use-services";
+import CardSkeleton from "./card-skeleton";
+import Skeleton from "react-loading-skeleton";
 
 function Services() {
-  const [services, setServices] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { data: services, isLoading } = useServices();
 
-  // side effects
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services`)
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
-  }, []);
   useTitleChanger("Services");
 
-  if (loading) return <Loading />;
   return (
     <Main>
       <Items>
         <PhotoProvider>
+          {isLoading &&
+            [...Array(10).keys()].map((i) => <CardSkeleton key={i} />)}
           {services &&
             services.map((service) => (
               <Item key={service._id}>
@@ -54,12 +45,19 @@ function Services() {
                 </ItemHeader>
                 <Content>
                   <Title>{service.name}</Title>
-                  <Desc>{shortText(service.desc)}</Desc>
+                  <Desc>{service.desc}</Desc>
                 </Content>
                 <Buttons>
-                  <PrimaryBtn as={Link} to={`/services/${service._id}`}>
+                  <SecondaryBtn
+                    style={{
+                      width: "100%",
+                      justifyContent: "center",
+                    }}
+                    as={Link}
+                    to={`/services/${service._id}`}
+                  >
                     Details
-                  </PrimaryBtn>
+                  </SecondaryBtn>
                 </Buttons>
               </Item>
             ))}

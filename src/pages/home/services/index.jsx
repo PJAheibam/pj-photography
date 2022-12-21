@@ -17,25 +17,12 @@ import PrimaryBtn from "../../../components/buttons/primary-button";
 import { Link } from "react-router-dom";
 import SecondaryBtn from "../../../components/buttons/secondary-button";
 import Loading from "../../loading";
+import useServices from "../../../hooks/use-services";
 
 function ServicesSection() {
-  const [services, setServices] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const { data: services, isLoading } = useServices(3);
 
-  // side effects
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_SERVER_URL}/services?limit=3`)
-      .then((res) => res.json())
-      .then((data) => {
-        setServices(data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-  }, []);
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
   return (
     <Container>
       <Heading>Feature Services</Heading>

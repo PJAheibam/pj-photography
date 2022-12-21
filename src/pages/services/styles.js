@@ -24,21 +24,20 @@ export const Item = styled.div`
 `;
 
 export const ItemHeader = styled.figure`
-  aspect-ratio: 1;
-  height: 250px;
   overflow: hidden;
   border-radius: 0.5rem;
 `;
 
 export const HeaderImage = styled.img`
-  width: 100%;
+  aspect-ratio: 16/9;
   height: 100%;
+  width: 100%;
   object-fit: cover;
   object-position: center;
 `;
 
 export const Content = styled.div`
-  /* height: 40%; */
+  /* height: 100%; */
   display: flex;
   flex-direction: column;
 `;
@@ -46,10 +45,24 @@ export const Content = styled.div`
 export const Title = styled.h1`
   font-size: clamp(1rem, 4vw, 1.25rem);
   margin-block: 0.25em;
+  /* height: 3.75rem; */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Desc = styled.p`
   margin-block: 0.25em;
+  margin-top: auto;
+  font-size: 1rem;
+  height: 4.75em;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export const Buttons = styled.div`
