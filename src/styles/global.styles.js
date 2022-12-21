@@ -56,6 +56,6 @@ export const GlobaStyles = createGlobalStyle`
         padding: 1rem;
         background-color: ${(p) => p.theme.palette.background.paper[3]}
     }
-    /* ${swiperStyle} */
+    ${swiperStyle}
 
 `;

@@ -11,6 +11,7 @@ export const Heading = styled.h1`
 `;
 
 export const SubHeading = styled.p`
+  text-transform: none;
   margin-inline: auto;
   max-width: 900px;
   text-align: center;
