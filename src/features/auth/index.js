@@ -24,7 +24,7 @@ export function register(email, password) {
 
 export function logout() {
   signOut(auth)
-    .then(() => console.info("Log Out Successfull!"))
+    .then(() => localStorage.removeItem("access-token"))
     .catch((err) => console.error(err));
 }
 

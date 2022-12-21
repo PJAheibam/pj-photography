@@ -1,16 +1,14 @@
+import { axiosInstance } from "../api";
+
 export function setJwtToken(user, callback = () => {}) {
-  fetch(`${process.env.REACT_APP_SERVER_URL}/jwt`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ uid: user?.uid }),
-  })
-    .then((res) => res.json())
-    .then((data) => {
-      console.info(data);
+  axiosInstance
+    .post("/jwt", {
+      uid: user?.uid,
+      email: user?.email,
+    })
+    .then(({ data }) => {
       localStorage.setItem("access-token", data.token);
       callback();
     })
-    .catch((err) => console.error(err));
+    .catch((error) => console.info(error));
 }
